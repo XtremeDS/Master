@@ -1,0 +1,86 @@
+<ion-view view-title="Game Settings" ng-controller="ConfigEventCtrl">
+    <ion-content>
+        <div class="list">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Initial Perk Points</span>
+                <input type="number" placeholder="Initial Perk Points">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Max. ComSys/Faction</span>
+                <input type="number" placeholder="Max. ComSys/Faction">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Max. Operator/ComSys</span>
+                <input type="number" placeholder="Max. Operator/ComSys">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Respawn Delay</span>
+                <input type="number" placeholder="Respawn Delay">
+            </label>
+
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Number of Factions in Game</span>
+                <input type="number" placeholder="Number of Factions in Game">
+            </label>
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Min. GPS Refresh Rate
+                </div>
+                <select>
+                    <option>0%</option>
+                    <option selected>15%</option>
+                    <option>30%</option>
+                </select>
+            </label>
+
+            <label class="item item-select">
+                <div class="input-label">
+                    Max. GPS Refresh Rate
+                </div>
+                <select>
+                    <option>0%</option>
+                    <option>15%</option>
+                    <option selected>30%</option>
+                </select>
+            </label>
+
+            <label class="item item-toggle">
+                <div class="input-label">ComSys Bases Visible</div>
+                <label class="toggle">
+                    <input type="checkbox">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </label>
+
+
+            <label class="item item-toggle">
+                <div class="input-label">Respawn points visible</div>
+                <label class="toggle">
+                    <input type="checkbox">
+
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </label>
+
+            <label class="item item-input">
+                <div class="input-label">Map: {{data.map}}</div>
+                <button>Choose Other Map</button>
+            </label>
+        </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-dark">
+        <div class="buttons">
+            <button class="button button-icon icon ion-trash-a"></button>
+        </div>
+        <h1 class="title"></h1>
+
+        <div class="buttons" ng-click="doSomething()">
+            <button class="button button-icon icon ion-checkmark-circled"></button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

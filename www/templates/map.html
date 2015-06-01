@@ -1,0 +1,29 @@
+<ion-view view-title="Map">
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon ion-ios-navigate-outline" id="buttonLocation" ng-click="centerOnMe()"></a>
+        <a class="button button-clear" ng-if="appType==0" ng-click="openSeeActivePerksModal()">Perks</a>
+    </ion-nav-buttons>
+    <ion-content>
+        <div id="map-canvas" data-tap-disabled="true">
+        </div>
+    </ion-content>
+    <ion-footer-bar class="bar-dark" ng-if="appType==0">
+        <div class="button-bar">
+            <button class="button" ng-click="showRequest('UAV')">
+                UAV
+            </button>
+            <button class="button" ng-click="showRequest('Quad')">
+                Quad
+            </button>
+            <button class="button" ng-click="showRequest('Mortar')" ng-if="specialisation==11">
+                Mortar
+            </button>
+            <button class="button" ng-click="showRequest('SysHack')">
+                Sys Hack
+            </button>
+            <button class="button" ng-click="openPopupKnownText()">
+                Text Answer
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,30 @@
+#map-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+#centerButtonsList {
+    margin-top: 12px;
+}
+
+#centerButtonsListPerks {
+    margin-top: 22px;
+}
+
+.scroll {
+    height: 100%;
+}
+
+#notification_count
+{
+
+    background: #cc0000;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    position: absolute;
+    margin-top: 0px;
+    font-size: 11px;
+}
