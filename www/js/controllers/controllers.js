@@ -1,11 +1,3 @@
-app.controller('ConfigMasterCtrl', function ($scope) {
-    $scope.masterInfo = {};
-
-    $scope.submitMsterInfo = function () {
-
-    };
-})
-
 //Master Event Form Controller
 app.controller('ConfigEventCtrl', function ($scope, $ionicModal) {
     $scope.data = {
@@ -79,25 +71,12 @@ app.controller('ConfigEventCtrl', function ($scope, $ionicModal) {
     $scope.oprList = [{id: 1, name: 'O.P.R. 1'}, {id: 2, name: 'O.P.R. 2'}, {id: 3, name: 'O.P.R. 3'}];
 })
 
-    //Master Config Controller //Structure $scope.masterData = {personalData:{},maps:{},rulseSet:{}};
-    .controller('MasterConfigCtrl', function($scope){
-
-    })
-
-    .controller('MasterUserConfigCtrl', function($scope){
-
-    })
-
 app.controller('MasterMapsCtrl', function($scope){
     $scope.shouldShowDelete = false;
     $scope.shouldShowReorder = false;
     $scope.listCanSwipe = true;
 
     this.maps = $scope.masterData.maps;
-})
-
-app.controller('MasterConfigRules', function($scope){
-
 })
 
 //Master Event Form Controller

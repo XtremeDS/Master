@@ -117,7 +117,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 'menuContent': {
                     templateUrl: "templates/master/config_master/config_master.html",
-                    controller: 'MasterConfigCtrl'
+                    controller: "ConfigMasterCtrl"
                 }
             }
         })
@@ -234,5 +234,5 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/map');
+    $urlRouterProvider.otherwise('/app/masterconfig');
 });
