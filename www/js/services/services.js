@@ -2,7 +2,7 @@
  * Created by joaosilva on 19/05/15.
  */
 app.service('AppService', function() {
-    var appType = 1;
+    var appType = 2;
 
     var isLogged = 0;
 
