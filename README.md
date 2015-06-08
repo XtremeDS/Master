@@ -3,7 +3,7 @@
 - AirSoft interface project;
 - This interface is generic to all apps (operator, comsys and master);
 - To do this, we are implementing it with an aux variable:
-    controllers.js
+    configEventCtrl.js
     // Set appType - 0:Operator 1:ComSys 2:Master
     scope.appType = 0;
 - Nato Ranks definition:

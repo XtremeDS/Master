@@ -2,6 +2,12 @@
  * Created by joaosilva on 25/05/15.
  */
 app.controller('EventsCtrl', function ($scope, AppService, CommonStubService) {
+    $scope.data = {
+        showDelete: false,
+        showReorder: false,
+        canSwipe: true
+    };
+
     console.log("inEvent: "+ AppService.getInEvent());
 
     $scope.isLogged = AppService.getIsLogged();
@@ -77,4 +83,29 @@ app.controller('EventsCtrl', function ($scope, AppService, CommonStubService) {
                 console.log($scope.getAllEventsResult);
             });
         };
+
+    //what to do when editing..
+    $scope.edit = function (item) {
+        alert('Edit Item: ' + item.id);
+    };
+
+    $scope.moveItem = function (item, fromIndex, toIndex) {
+        $scope.items.splice(fromIndex, 1);
+        $scope.items.splice(toIndex, 0, item);
+    };
+
+    //what to do when deleting
+    $scope.onItemDelete = function (item) {
+        $scope.items.splice($scope.items.indexOf(item), 1);
+    };
+
+    //TODO : Read data from back-end instead of dummy data
+    $scope.items = [{id: 1, name: "Event 1", location: "Leiria"},
+        {id: 2, name: "Event 2", location: "Lisboa"},
+        {id: 3, name: "Event 3", location: "Porto"},
+        {id: 4, name: "Event 4", location: "Aveiro"},
+        {id: 5, name: "Event 5", location: "Coimbra"},
+        {id: 6, name: "Event 6", location: "Braga"},
+        {id: 7, name: "Event 7", location: "Santarém"},
+        {id: 8, name: "Event 8", location: "Viana do Castelo"}];
 });

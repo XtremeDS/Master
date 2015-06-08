@@ -1,64 +1,97 @@
 <ion-view view-title="General Settings" ng-controller="ConfigEventCtrl">
+
     <ion-content>
+        <form name="eventGeneralSettingsForm" novalidate ng-submit="saveEventGeneralSettings(eventGeneralSettingsForm)">
         <div class="list">
             <div class="row">
                 <img src="img/no_logo_selected.png" id="logo_image" width="300px" height="200px"/>
             </div>
+
             <div class="row">
                 <button onclick="loadNewLogo()">Load logo...</button>
             </div>
+
             <div class="item item-divider">
                 General Information
             </div>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Name</span>
-                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Name" name="eventName" ng-model="eventName" required ng-minlength="5" ng-maxlength="50">
+                <p ng-show="eventGeneralSettingsForm.eventName.$invalid && !eventGeneralSettingsForm.eventName.$pristine" class="help-block">Event Name is Required </p>
+                <p ng-show="eventGeneralSettingsForm.eventName.$error.minlength" class="help-block">Event Name is too short.</p>
+                <p ng-show="eventGeneralSettingsForm.eventName.$error.maxlength" class="help-block">Event Name is too long.</p>
             </label>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Description</span>
-                <input type="text" placeholder="Description">
+                <input type="text" placeholder="Description" name="eventDescription" ng-model="eventDescription">
             </label>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Briefing</span>
-                <textarea placeholder="Briefing"></textarea>
+                <textarea placeholder="Briefing" name="eventBriefing" ng-model="eventBriefing"></textarea>
             </label>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Place</span>
-                <input type="text" placeholder="Place">
+                <input type="text" placeholder="Place" name="eventPlace" ng-model="eventPlace" ng-minlength="10" ng-maxlength="200" required>
+                <p ng-show="eventGeneralSettingsForm.eventPlace.$invalid && !eventGeneralSettingsForm.eventName.$pristine" class="help-block">Place is Required </p>
+                <p ng-show="eventGeneralSettingsForm.eventPlace.$error.minlength" class="help-block">Place is too short.</p>
+                <p ng-show="eventGeneralSettingsForm.eventPlace.$error.maxlength" class="help-block">Place is too long.</p>
             </label>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Rules</span>
-                <input type="text" placeholder="Rules">
+                <input type="text" placeholder="Rules" name="eventRules" ng-model="eventRules" ng-minlength="50" ng-maxlength="500">
+                <p ng-show="eventGeneralSettingsForm.eventRules.$invalid && !eventGeneralSettingsForm.eventRules.$pristine" class="help-block">Rules are Required </p>
+                <p ng-show="eventGeneralSettingsForm.eventRules.$error.minlength" class="help-block">Rules text is too short.</p>
+                <p ng-show="eventGeneralSettingsForm.eventRules.$error.maxlength" class="help-block">Rules text is too long.</p>
             </label>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Restrictions</span>
-                <input type="text" placeholder="Restrictions">
+                <input type="text" placeholder="Restrictions" name="eventRestrictions" ng-model="eventRestrictions" ng-minlength="20" ng-maxlength="500" required>
+                <p ng-show="eventGeneralSettingsForm.eventRestrictions.$invalid && !eventGeneralSettingsForm.eventRestrictions.$pristine" class="help-block">Restrictions are Required </p>
+                <p ng-show="eventGeneralSettingsForm.eventRestrictions.$error.minlength" class="help-block">Restrictions text is too short.</p>
+                <p ng-show="eventGeneralSettingsForm.eventRestrictions.$error.maxlength" class="help-block">Restrictions text is too long.</p>
             </label>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Proceedments</span>
-                <input type="text" placeholder="Proceedments">
+                <input type="text" placeholder="Proceedments" name="eventProceedments" ng-model="eventProceedments">
             </label>
 
             <div class="item item-divider">
                 Event Dates
             </div>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Reg. Start Date</span>
-                <input type="date" placeholder="Reg. Start Date">
+                <input type="datetime-local" placeholder="Reg. Start Date" name="eventRegistryStartDate" ng-model="eventRegistryStartDate" required>
+                <p ng-show="eventGeneralSettingsForm.eventRegistryStartDate.$invalid && !eventGeneralSettingsForm.eventRegistryStartDate.$pristine" class="help-block">Registry Start Date is Required </p>
             </label>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Reg. End Date</span>
-                <input type="date" placeholder="Reg. End Date">
+                <input type="datetime-local" placeholder="Reg. End Date" name="eventRegistryEndDate" ng-model="eventRegistryEndDate" required>
+                <p ng-show="eventGeneralSettingsForm.eventRegistryEndDate.$invalid && !eventGeneralSettingsForm.eventRegistryEndDate.$pristine" class="help-block">Registry End Date is Required </p>
             </label>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Event Start Date</span>
-                <input type="date" placeholder="Event Start Date">
+                <input type="datetime-local" placeholder="Event Start Date" name="eventStartDate" ng-model="eventStartDate" required>
+                <p ng-show="eventGeneralSettingsForm.eventStartDate.$invalid && !eventGeneralSettingsForm.eventStartDate.$pristine" class="help-block">Event Start Date is Required </p>
             </label>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Event End Date</span>
-                <input type="date" placeholder="Event End Date">
+                <input type="datetime-local" placeholder="Event End Date" name="eventEndDate" ng-model="eventEndDate" required>
+                <p ng-show="eventGeneralSettingsForm.eventEndDate.$invalid && !eventGeneralSettingsForm.eventEndDate.$pristine" class="help-block">Event End Date is Required </p>
             </label>
+
         </div>
+        </form>
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-dark">
         <div class="buttons">
@@ -66,8 +99,9 @@
         </div>
         <h1 class="title"></h1>
 
-        <div class="buttons" ng-click="doSomething()">
-            <button class="button button-icon icon ion-checkmark-circled"></button>
+        <div class="buttons">
+            <button class="button button-icon icon ion-checkmark-circled" type="submit" ng-disabled="eventGeneralSettingsForm.$invalid"></button>
         </div>
     </ion-footer-bar>
+
 </ion-view>
