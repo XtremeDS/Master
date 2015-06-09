@@ -1,29 +1,60 @@
-<ion-view view-title="Personal Config">
-	<ion-nav-back-button>
-  	</ion-nav-back-button>
-	<ion-nav-buttons side="right">
-      <button class="button" ng-click="doSomething()">
-        Done
-      </button>
+<ion-view view-title="Personal Config" ng-controller="MasterUserConfigCtrl as mConfigController">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="doSomething()">
+            Done
+        </button>
     </ion-nav-buttons>
     <ion-content>
-		<div class="list">
-		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Email</span>
-		    <input type="email" placeholder="Email">
-		  </label>
-		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Repeat Email</span>
-		    <input type="email" placeholder="Repeat Email">
-		  </label>
-		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Password</span>
-		    <input type="password" placeholder="Password">
-		  </label>
-		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Repeat Password</span>
-		    <input type="password" placeholder="Repeat Password">
-		  </label>
-		</div>
+		<form novalidade ng-submit="registerMasterInfo(masterInfo, isLogged)">
+	        <div class="list">
+	            <div class="item item-divider">
+	                Access Data
+	            </div>
+	            <label class="item item-input item-floating-label">
+	                <span class="input-label">Email</span>
+	                <input type="email" placeholder="Email" ng-model="masterInfo.accessData.email">
+	            </label>
+	            <label class="item item-input item-floating-label" ng-if="!isLogged">
+	                <span class="input-label">Repeat Email</span>
+	                <input type="email" placeholder="Repeat Email">
+	            </label>
+	            <label class="item item-input item-floating-label">
+	                <span class="input-label">Password</span>
+	                <input type="password" placeholder="Password" ng-model="masterInfo.accessData.password">
+	            </label>
+	            <label class="item item-input item-floating-label">
+	                <span class="input-label">Repeat Password</span>
+	                <input type="password" placeholder="Repeat Password">
+	            </label>
+	        </div>
+	        <div class="list">
+	            <div class="item item-divider">
+	                Personal Data
+	            </div>
+	            <label class="item item-input item-floating-label">
+	                <span class="input-label">Name</span>
+	                <input type="text" placeholder="Name" ng-model="masterInfo.personalData.name">
+	            </label>
+	            <label class="item item-input item-floating-label">
+	                <span class="input-label">Phone Number</span>
+	                <input type="text" placeholder="Phone Number" ng-model="masterInfo.personalData.phone">
+	            </label>
+	            <label class="item item-input item-floating-label">
+	                <span class="input-label">ZIP Code</span>
+	                <input type="text" placeholder="ZIP Code" ng-model="masterInfo.personalData.phone">
+	            </label>				
+	        </div>
+			<div class="list">
+				<a class="item item-icon-left" href="#" ng-if="!masterInfo.personalData.country">
+					<i class="icon icon-small ion-flag"></i>
+					Choose Country
+				</a>
+				<a class="item item-icon-left" href="#" ng-if="masterInfo.personalData.country">
+					
+				</a>
+			</div>
+		</form>
     </ion-content>
 </ion-view>
