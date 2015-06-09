@@ -49,10 +49,11 @@
 			<div class="list">
 				<a class="item item-icon-left" href="#" ng-if="!masterInfo.personalData.country">
 					<i class="icon icon-small ion-flag"></i>
-					Choose Country
+					Choose Country {{ masterInfo.personalData }}
 				</a>
 				<a class="item item-icon-left" href="#" ng-if="masterInfo.personalData.country">
-					
+					<flag country="{{ masterInfo.personalData.country.country }}" class="icon" size="32"></flag>
+					{{ masterInfo.personalData.country.countryName }}
 				</a>
 			</div>
 		</form>

@@ -1,4 +1,6 @@
-app.controller('ConfigMasterCtrl', function ($scope, AppService, CommonStubService) {
+app.controller('ConfigMasterCtrl', function ($scope, AppService, CommonStubService, MasterConfig) {
+	
+	$scope.masterInfo = MasterConfig;
 
 	$scope.registerInformation = {
 		password: false,
@@ -9,28 +11,7 @@ app.controller('ConfigMasterCtrl', function ($scope, AppService, CommonStubServi
 	// Set userLogged - 0:Not logged 1:Logged
     $scope.isLogged = AppService.getIsLogged();
 
-	$scope.masterInfo = {
-		accessData:{
-			email:false,
-			repeatEmail:false,
-			password:false,
-			repeatPassword:false
-		},
-		personalData:{
-			name:false,
-			phone:false,
-			zipCode:false,
-			country:false
-		},
-		association:{
-			name:false,
-			videoLink:false,
-			pageLink:false,
-			description:false
-		}
-	};	
-
 	$scope.doMasterLogout = function() {
-		console.log('Logou pressed');
+		console.log('Logout pressed');
 	};
 });
