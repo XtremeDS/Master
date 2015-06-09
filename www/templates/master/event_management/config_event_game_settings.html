@@ -1,86 +1,102 @@
 <ion-view view-title="Game Settings" ng-controller="ConfigEventCtrl">
     <ion-content>
-        <div class="list">
-            <label class="item item-input item-floating-label">
-                <span class="input-label">Initial Perk Points</span>
-                <input type="number" placeholder="Initial Perk Points">
-            </label>
-            <label class="item item-input item-floating-label">
-                <span class="input-label">Max. ComSys/Faction</span>
-                <input type="number" placeholder="Max. ComSys/Faction">
-            </label>
-            <label class="item item-input item-floating-label">
-                <span class="input-label">Max. Operator/ComSys</span>
-                <input type="number" placeholder="Max. Operator/ComSys">
-            </label>
-            <label class="item item-input item-floating-label">
-                <span class="input-label">Respawn Delay</span>
-                <input type="number" placeholder="Respawn Delay">
-            </label>
-
-            <label class="item item-input item-floating-label">
-                <span class="input-label">Number of Factions in Game</span>
-                <input type="number" placeholder="Number of Factions in Game">
-            </label>
-
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Min. GPS Refresh Rate
-                </div>
-                <select>
-                    <option>0%</option>
-                    <option selected>15%</option>
-                    <option>30%</option>
-                </select>
-            </label>
-
-            <label class="item item-select">
-                <div class="input-label">
-                    Max. GPS Refresh Rate
-                </div>
-                <select>
-                    <option>0%</option>
-                    <option>15%</option>
-                    <option selected>30%</option>
-                </select>
-            </label>
-
-            <label class="item item-toggle">
-                <div class="input-label">ComSys Bases Visible</div>
-                <label class="toggle">
-                    <input type="checkbox">
-                    <div class="track">
-                        <div class="handle"></div>
-                    </div>
+        <form name="eventGameSettingsForm" ng-submit="saveGameSettings(eventGameSettingsForm)" novalidate>
+            <div class="list">
+                <label class="item item-input item-floating-label">
+                    <span class=" input-label">Initial Perk Points</span>
+                    <input type="number" placeholder="Initial Perk Points" name="initialPerkPoints"
+                           ng-model="initialPerkPoints" required>
+                    <p ng-show="eventGameSettingsForm.initialPerkPoints.$invalid && !eventGameSettingsForm.initialPerkPoints.$pristine" class="help-block">Initial Perk Points Required</p>
                 </label>
-            </label>
 
-
-            <label class="item item-toggle">
-                <div class="input-label">Respawn points visible</div>
-                <label class="toggle">
-                    <input type="checkbox">
-
-                    <div class="track">
-                        <div class="handle"></div>
-                    </div>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Max. ComSys/Faction</span>
+                    <input type="number" placeholder="Max. ComSys/Faction" name="maxComsysPerFaction"
+                           ng-model="maxComsysPerFaction" required>
+                    <p ng-show="eventGameSettingsForm.maxComsysPerFaction.$invalid && !eventGameSettingsForm.maxComsysPerFaction.$pristine" class="help-block">Max. ComSys/Faction Required</p>
                 </label>
-            </label>
 
-            <label class="item item-input">
-                <div class="input-label">Map: {{data.map}}</div>
-                <button>Choose Other Map</button>
-            </label>
-        </div>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Max. Operator/ComSys</span>
+                    <input type="number" placeholder="Max. Operator/ComSys" name="maxOperPerComSys"
+                           ng-model="maxOperPerComSys" required>
+                    <p ng-show="eventGameSettingsForm.maxOperPerComSys.$invalid && !eventGameSettingsForm.maxOperPerComSys.$pristine" class="help-block">Max. Operator/ComSys Required</p>
+                </label>
+
+                <label class="item item-input item-floating-label">
+                    <spsan class="input-label">Respawn Delay</spsan>
+                    <input type="number" placeholder="Respawn Delay" name="respawnDelay" ng-model="respawnDelay" required>
+                    <p ng-show="eventGameSettingsForm.respawnDelay.$invalid && !eventGameSettingsForm.respawnDelay.$pristine" class="help-block">Respawn Delay Required</p>
+                </label>
+
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Number of Factions in Game</span>
+                    <input type="number" placeholder="Number of Factions in Game" name="numberOfFactionsInGame" ng-model="numberOfFactionsInGame" required>
+                    <p ng-show="eventGameSettingsForm.numberOfFactionsInGame.$invalid && !eventGameSettingsForm.numberOfFactionsInGame.$pristine" class="help-block">Number Of Factions In Game Required</p>
+                </label>
+
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Min. GPS Refresh Rate
+                    </div>
+                    <select>
+                        <option>0%</option>
+                        <option selected>15%</option>
+                        <option>30%</option>
+                    </select>
+                </label>
+
+                <label class="item item-select">
+                    <div class="input-label">
+                        Max. GPS Refresh Rate
+                    </div>
+                    <select>
+                        <option>0%</option>
+                        <option>15%</option>
+                        <option selected>30%</option>
+                    </select>
+                </label>
+
+                <label class="item item-toggle">
+                    <div class="input-label">ComSys Bases Visible</div>
+                    <label class="toggle">
+                        <input type="checkbox">
+
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </label>
+
+                <label class="item item-toggle">
+                    <div class="input-label">Respawn points visible</div>
+                    <label class="toggle">
+                        <input type="checkbox">
+
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </label>
+
+                <label class="item item-input">
+                    <div class="input-label">Map: {{data.map}}</div>
+                    <button>Choose Other Map</button>
+                </label>
+            </div>
+        </form>
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-dark">
         <div class="buttons">
             <button class="button button-icon icon ion-trash-a"></button>
         </div>
+
         <h1 class="title"></h1>
 
-        <div class="buttons" ng-click="doSomething()">
-            <button class="button button-icon icon ion-checkmark-circled"></button>
+        <div class="buttons">
+            <button class="button button-icon icon ion-checkmark-circled" type="submit"
+                    ng-disabled="eventGameSettingsForm.$invalid"></button>
         </div>
+
     </ion-footer-bar>
 </ion-view>
