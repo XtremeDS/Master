@@ -6,7 +6,7 @@
 <ion-content>
 <div class="list">
 <label class="item item-radio" ng-repeat="(shortCountry, name) in countries" ng-click="countrySelection(shortCountry, name)">
-	<input type="radio" name="group" ng-value="{{shortCountry}}" ng-checked="{{masterInfo.personalData.country!=false && masterInfo.personalData.country.country.toLowerCase()==shortCountry.toLowerCase()}}">
+	<input type="radio" name="group" ng-value="{{shortCountry}}" ng-checked="masterInfo.personalData.country!=false && masterInfo.personalData.country.country.toLowerCase()==shortCountry.toLowerCase()">
 	<div class="item-content item item-icon-left">
 		<flag country="{{ shortCountry }}" class="icon" size="32"></flag>
 		<div>{{ name }}</div>

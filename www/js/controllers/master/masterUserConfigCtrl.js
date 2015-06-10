@@ -4,9 +4,13 @@ app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService
 	$scope.isFormValid = false;
 	$scope.countries = Countries;
 	
-	$scope.registerMasterInfo = function(sbmitedMasterInfo, isLogged){
+	$scope.registerMasterInfo = function(submitedForm){
 		//In case is logged is a change data
 		console.log($scope.masterInfo);
+		console.log(submitedForm.$isValid);
+		if(submitedForm.$valid){
+			
+		}
 	}
 	
 	/* Choose Country Modal */
