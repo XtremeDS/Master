@@ -2,29 +2,37 @@
     <ion-nav-back-button>
     </ion-nav-back-button>
     <ion-nav-buttons side="right">
-        <button class="button" ng-click="doSomething()">
+        <button class="button" type="submit" id="submit" form="masterRegisterForm">
             Done
         </button>
     </ion-nav-buttons>
     <ion-content>
-		<form novalidade ng-submit="registerMasterInfo(masterInfo, isLogged)">
+		<form id="masterRegisterForm" name="masterRegisterForm" novalidade ng-submit="registerMasterInfo(masterRegisterForm)">
 	        <div class="list">
 	            <div class="item item-divider">
 	                Access Data
 	            </div>
 	            <label class="item item-input item-floating-label">
-	                <span class="input-label">Email</span>
-	                <input type="email" placeholder="Email" ng-model="masterInfo.accessData.email">
+	                <span class="input-label " ng-class="{ 'has-error' : masterRegisterForm.email.$invalid || !masterRegisterForm.email.$pristine}">Email</span>
+	                <input type="email" name="email" placeholder="Email" ng-model="masterInfo.accessData.email" required>	
 	            </label>
+				
+				<div class="form-errors" ng-messages="masterRegisterForm.email.$error && masterRegisterForm.email!=''">
+					<div class="form-error" ng-message="required">Campo Email é obrigatorio</div>
+				</div>
+				
 	            <label class="item item-input item-floating-label" ng-if="!isLogged">
 	                <span class="input-label">Repeat Email</span>
-	                <input type="email" placeholder="Repeat Email">
+	                <input type="email" name="repeatEmail" placeholder="Repeat Email">
+					<p ng-show="masterRegisterForm.email != masterRegisterForm.repeatEmail" class="help-block">Email and Repeat Email must be equal </p>	
 	            </label>
-	            <label class="item item-input item-floating-label">
+	            
+				<label class="item item-input item-floating-label">
 	                <span class="input-label">Password</span>
 	                <input type="password" placeholder="Password" ng-model="masterInfo.accessData.password">
 	            </label>
-	            <label class="item item-input item-floating-label">
+	            
+				<label class="item item-input item-floating-label">
 	                <span class="input-label">Repeat Password</span>
 	                <input type="password" placeholder="Repeat Password">
 	            </label>
@@ -35,26 +43,53 @@
 	            </div>
 	            <label class="item item-input item-floating-label">
 	                <span class="input-label">Name</span>
-	                <input type="text" placeholder="Name" ng-model="masterInfo.personalData.name">
+	                <input type="text" placeholder="Name" ng-model="masterInfo.personalData.name" required>
 	            </label>
-	            <label class="item item-input item-floating-label">
+	            
+				<label class="item item-input item-floating-label">
 	                <span class="input-label">Phone Number</span>
 	                <input type="text" placeholder="Phone Number" ng-model="masterInfo.personalData.phone">
 	            </label>
-	            <label class="item item-input item-floating-label">
+	            
+				<label class="item item-input item-floating-label">
 	                <span class="input-label">ZIP Code</span>
-	                <input type="text" placeholder="ZIP Code" ng-model="masterInfo.personalData.phone">
+	                <input type="text" placeholder="ZIP Code" ng-model="masterInfo.personalData.zipCode">
 	            </label>				
 	        </div>
 			<div class="list">
-				<a class="item item-icon-left" href="#" ng-if="!masterInfo.personalData.country">
+				<a class="item item-icon-left" href="#" ng-click="openChooseCountryModal(masterInfo.personalData.country.country)" ng-if="!masterInfo.personalData.country">
 					<i class="icon icon-small ion-flag"></i>
 					Choose Country
 				</a>
-				<a class="item item-icon-left" href="#" ng-if="masterInfo.personalData.country">
-					
+				<a class="item item-icon-left" href="#" ng-click="openChooseCountryModal(masterInfo.personalData.country.country)" ng-if="masterInfo.personalData.country">
+					<flag country="{{ masterInfo.personalData.country.country }}" class="icon" size="32"></flag>
+					{{ masterInfo.personalData.country.countryName }}
 				</a>
 			</div>
+	        <div class="list">
+	            <div class="item item-divider">
+	                Association Data
+	            </div>
+	            <label class="item item-input item-floating-label">
+	                <span class="input-label">Name</span>
+	                <input type="text" placeholder="Name" ng-model="masterInfo.association.name" required>
+	            </label>
+	            
+				<label class="item item-input item-floating-label">
+	                <span class="input-label">Home Page</span>
+	                <input type="url" placeholder="Home Page" ng-model="masterInfo.association.pageLink">
+	            </label>
+	            
+				<label class="item item-input item-floating-label">
+	                <span class="input-label">Presentation Video</span>
+	                <input type="url" placeholder="Presentation Video Link" ng-model="masterInfo.association.videoLink">
+	            </label>
+	            
+				<label class="item item-input item-floating-label">
+	                <span class="input-label">About Association</span>
+					<textarea class="" placeholder="About Association" ng-model="masterInfo.association.description"></textarea>
+	            </label>				
+	        </div>
 		</form>
     </ion-content>
 </ion-view>

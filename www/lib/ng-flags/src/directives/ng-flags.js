@@ -6,20 +6,25 @@
  */
 angular.module('ngFlag', []).
   directive('flag', ['$parse', function($parse) {
-    return {
-      template: '<span class="{{ flagSize }}"><span class="flag {{ country }}"></span></span>',
-      replace: true,
-      link: function(scope, elm, attrs) {
-        // Default flag size
-        scope.flagSize = 'f16';
+	  return {
+	        restrict: 'E',
+	        replace: true,
+	        template: '<span class="f{{ size }}"><span class="flag {{ country }}"></span></span>',
+	        scope: {
+	          country: '@',
+	          size: '@'
+	        },
+	        link: function(scope, elm, attrs) {
+	          // Default flag size
+	          scope.size = 32;
 
-        attrs.$observe('flag', function(value) {
-          scope.country = scope.$eval(value).toLowerCase();
-        });
+	          scope.$watch('country', function(value) {
+	            scope.country = angular.lowercase(value);
+	          });
 
-        attrs.$observe('flagSize', function(value) {
-          scope.flagSize = value;
-        });
-      }
-    };
+	          scope.$watch('size', function(value) {
+	            scope.size = value;
+	          });
+	        }
+	      };
   }]);
