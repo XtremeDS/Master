@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in configEventCtrl.js
 // 'starter.services' is found in services.js
 
-var app = angular.module('starter', ['ionic', 'ngMessages', 'ngFlags']);
+var app = angular.module('starter', ['ionic', 'ngFlag']);
 
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
