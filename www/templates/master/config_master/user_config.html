@@ -2,7 +2,7 @@
     <ion-nav-back-button>
     </ion-nav-back-button>
     <ion-nav-buttons side="right">
-        <button class="button" ng-click="doSomething()">
+        <button class="button" ng-click="registerMasterInfo()">
             Done
         </button>
     </ion-nav-buttons>
@@ -43,19 +43,40 @@
 	            </label>
 	            <label class="item item-input item-floating-label">
 	                <span class="input-label">ZIP Code</span>
-	                <input type="text" placeholder="ZIP Code" ng-model="masterInfo.personalData.phone">
+	                <input type="text" placeholder="ZIP Code" ng-model="masterInfo.personalData.zipCode">
 	            </label>				
 	        </div>
 			<div class="list">
-				<a class="item item-icon-left" href="#" ng-if="!masterInfo.personalData.country">
+				<a class="item item-icon-left" href="#" ng-click="openChooseCountryModal(masterInfo.personalData.country.country)" ng-if="!masterInfo.personalData.country">
 					<i class="icon icon-small ion-flag"></i>
-					Choose Country {{ masterInfo.personalData }}
+					Choose Country
 				</a>
-				<a class="item item-icon-left" href="#" ng-if="masterInfo.personalData.country">
+				<a class="item item-icon-left" href="#" ng-click="openChooseCountryModal(masterInfo.personalData.country.country)" ng-if="masterInfo.personalData.country">
 					<flag country="{{ masterInfo.personalData.country.country }}" class="icon" size="32"></flag>
 					{{ masterInfo.personalData.country.countryName }}
 				</a>
 			</div>
+	        <div class="list">
+	            <div class="item item-divider">
+	                Association Data
+	            </div>
+	            <label class="item item-input item-floating-label">
+	                <span class="input-label">Name</span>
+	                <input type="text" placeholder="Name" ng-model="masterInfo.association.name">
+	            </label>
+	            <label class="item item-input item-floating-label">
+	                <span class="input-label">Home Page</span>
+	                <input type="url" placeholder="Home Page" ng-model="masterInfo.association.pageLink">
+	            </label>
+	            <label class="item item-input item-floating-label">
+	                <span class="input-label">Presentation Video</span>
+	                <input type="url" placeholder="Presentation Video Link" ng-model="masterInfo.association.videoLink">
+	            </label>
+	            <label class="item item-input item-floating-label">
+	                <span class="input-label">About Association</span>
+					<textarea class="" placeholder="About Association" ng-model="masterInfo.association.description"></textarea>
+	            </label>				
+	        </div>
 		</form>
     </ion-content>
 </ion-view>

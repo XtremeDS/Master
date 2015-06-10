@@ -1,10 +1,12 @@
-app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService, CommonStubService, MasterConfig) {
+app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService, CommonStubService, MasterConfig, Countries) {
 	
 	$scope.masterInfo = MasterConfig;
 	$scope.isFormValid = false;
+	$scope.countries = Countries;
 	
 	$scope.registerMasterInfo = function(sbmitedMasterInfo, isLogged){
 		//In case is logged is a change data
+		console.log($scope.masterInfo);
 	}
 	
 	/* Choose Country Modal */
@@ -24,5 +26,22 @@ app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService
 	$scope.closeNewTask = function() {
 		$scope.countryModal.hide();
 	};
+	
+	$scope.openChooseCountryModal = function(){
+		$scope.countryModal.show();
+	}
+	
+	$scope.closeChooseCountryModal = function(){
+		$scope.countryModal.hide();
+	}
+	
+	$scope.countrySelection = function(shortName, name){
+		$scope.masterInfo.personalData.country = {
+			country: shortName.toLowerCase(),
+			countryName: name
+		}
+		
+		$scope.countryModal.hide();
+	}
 	
 });

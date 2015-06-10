@@ -1,18 +1,18 @@
 <ion-modal-view>
-	<ion-header-bar>
-	  <h1 class="title">Choose Country</h1>
-	</ion-header-bar>
-	<ion-content>
-		<div class="list">
-
-		  <label class="item item-radio">
-		    <input type="radio" name="group">
-		    <div class="item-content">
-		      
-		    </div>
-		    <i class="radio-icon ion-checkmark"></i>
-		  </label>
-
-		</div>
-	</ion-content>
+<ion-header-bar>
+<h1 class="title">Choose Country</h1>
+<button class="button" ng-click="closeChooseCountryModal()">Close</button>
+</ion-header-bar>
+<ion-content>
+<div class="list">
+<label class="item item-radio" ng-repeat="(shortCountry, name) in countries" ng-click="countrySelection(shortCountry, name)">
+	<input type="radio" name="group" ng-value="{{shortCountry}}" ng-checked="{{masterInfo.personalData.country!=false && masterInfo.personalData.country.country.toLowerCase()==shortCountry.toLowerCase()}}">
+	<div class="item-content item item-icon-left">
+		<flag country="{{ shortCountry }}" class="icon" size="32"></flag>
+		<div>{{ name }}</div>
+	</div>
+	<i class="radio-icon ion-checkmark"></i>
+</label>
+</div>
+</ion-content>
 </ion-modal-view>

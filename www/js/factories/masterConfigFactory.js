@@ -1,22 +1,19 @@
 app.factory('MasterConfig', function(){
 	return {
 		accessData:{
-			email:""
+			email:null
 		},
 		personalData:{
-			name:"",
-			phone:"",
-			zipCode:"",
-			country:{
-				country: 'pt',
-				countryName: 'Portugal'
-			}
+			name:null,
+			phone:null,
+			zipCode:null,
+			country:null
 		},
 		association:{
-			name:"",
-			videoLink:"",
-			pageLink:"",
-			description:""
+			name:null,
+			videoLink:null,
+			pageLink:null,
+			description:null
 		}
 	};	
 
