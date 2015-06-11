@@ -8,9 +8,6 @@ app.controller('SettingsCtrl', function ($scope, $ionicLoading, $timeout, AppSer
     // Set userLogged - 0:Not logged 1:Logged
     $scope.isLogged = AppService.getIsLogged();
 
-    // Set inSquad - 0:Not in squad 1:In squad
-    $scope.inSquad = AppService.getInSquad();
-
     $scope.saveIPs = function () {
         $scope.loadingSaveIPs = $ionicLoading.show({
             content: 'Saving server IPs information',
