@@ -105,9 +105,9 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
         });
         console.log('Doing login', $scope.loginData);
 
-        // Login for operator
-        if ($scope.appType == 0) {
-            OperatorStubService.loginOperator($scope.loginData.username, $scope.loginData.password)
+        // Login for Master
+        if ($scope.appType == 2) {
+            MasterStubService.login($scope.loginData.username, $scope.loginData.password)
                 .success(function (data) {
                     $scope.loadingLogin.hide();
 
@@ -139,14 +139,6 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
                         template: 'Unable to login: ' + error
                     });
                 });
-        }else{
-            // Login for comsys
-            if ($scope.appType == 1) {
-
-            }else{
-                // Login for master
-
-            }
         }
     };
 
@@ -176,7 +168,7 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
         console.log('Doing Sign Up', $scope.signUpData);
 
         if ($scope.signUpData.password == $scope.signUpData.repeatPassword) {
-            OperatorStubService.createOperator($scope.signUpData.username, $scope.signUpData.password,
+            MasterStubService.createMaster($scope.signUpData.username, $scope.signUpData.password,
                 $scope.signUpData.nickname, $scope.signUpData.country, $scope.signUpData.rank, null)
                 .success(function (data) {
                     $scope.loadingSignUP.hide();
@@ -226,112 +218,5 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
         $scope.modalJoinSquad = modalJoinSquad;
     });
 
-    // Triggered in the join squad modal to close it
-    $scope.closeJoinSquadModal = function () {
-        $scope.modalJoinSquad.hide();
-    };
-
-    // Open the join squad modal
-    $scope.openJoinSquadModal = function () {
-        $scope.modalJoinSquad.show();
-    };
-
-    // Perform the join squad action when the user submits the joinSquad form
-    $scope.doJoinSquad = function () {
-        $scope.loadingJoinSquad = $ionicLoading.show({
-            content: 'Saving join squad information',
-            showBackdrop: false
-        });
-        OperatorStubService.joinFactionSquad($scope.eventID(), $scope.factionPin(), $scope.squadID())
-            .success(function (data) {
-                $scope.loadingJoinSquad.hide();
-
-                console.log(data);
-
-                if (data.response==0){
-                    // Bad request
-                    var alertBadRequestPopup = $ionicPopup.alert({
-                        title: 'Unable to join',
-                        template: 'Unable to join squad. Please check your internet connection.'
-                    });
-                }else{
-                    console.log('Doing join squad', $scope.joinSquadData);
-
-                    // Change the variable isLogged to is logged state
-                    AppService.setSquadID(1);
-                    $scope.squadID = AppService.getSquadID();
-
-                    $scope.closeJoinSquadModal();
-                }
-            })
-            .error(function (error) {
-                $scope.loadingJoinSquad.hide();
-
-                // Bad request
-                var alertBadRequestPopup = $ionicPopup.alert({
-                    title: 'Unable to join',
-                    template: 'Unable to join squad: ' + error.message
-                });
-            });
-    };
-
-    // Create the join squad modal that we will use later
-    $ionicModal.fromTemplateUrl('templates/operator/createSquad.html', {
-        scope: $scope
-    }).then(function (modalCreateSquad) {
-        $scope.modalCreateSquad = modalCreateSquad;
-    });
-
-    // Triggered in the join squad modal to close it
-    $scope.closeCreateSquadModal = function () {
-        $scope.modalCreateSquad.hide();
-    };
-
-    // Open the join squad modal
-    $scope.openCreateSquadModal = function () {
-        $scope.modalCreateSquad.show();
-    };
-
-    // Perform the join squad action when the user submits the joinSquad form
-    $scope.doCreateSquad = function () {
-        $scope.loadingCreateSquad = $ionicLoading.show({
-            content: 'Saving crate squad information',
-            showBackdrop: false
-        });
-        console.log('Doing create squad', $scope.createSquadData);
-
-        OperatorStubService.createSquad($scope.eventID, $scope.factionPin)
-            .success(function (data) {
-                $scope.loadingCreateSquad.hide();
-
-                console.log(data);
-
-                if(data.response==0){
-                    // Bad request
-                    var alertBadRequestPopup = $ionicPopup.alert({
-                        title: 'Unable to create squad',
-                        template: 'Unable to create new squad. Please check your internet connection.'
-                    });
-                }else{
-                    // Change the variable squadID and isSquadLider to is logged state
-                    AppService.setSquadID(1);
-                    AppService.setIsSquadLider(1);
-                    $scope.squadID = AppService.getSquadID();
-                    $scope.squadLider = AppService.getIsSquadLider();
-
-                    // Close modals
-                    $scope.closeCreateSquadModal();
-                    $scope.closeJoinSquadModal();
-                }
-            })
-            .error(function (error) {
-                $scope.loadingCreateSquad.hide();
-
-                // Bad request
-                var alertBadRequestPopup = $ionicPopup.alert({
-                    title: 'Unable to create squad',
-                    template: 'Unable to create new squad: ' + error.message
-                });
-            });
-    };
+    
 });
