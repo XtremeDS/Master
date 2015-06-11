@@ -1,7 +1,7 @@
-# interfaceBuilder
+# Master
 
 - AirSoft interface project;
-- This interface is generic to all apps (operator, comsys and master);
+- This interface is for the master;
 - To do this, we are implementing it with an aux variable:
     configEventCtrl.js
     // Set appType - 0:Operator 1:ComSys 2:Master
