@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in configEventCtrl.js
 // 'starter.services' is found in services.js
 
-var app = angular.module('starter', ['ionic', 'ngMessages', 'ngFlag']);
+var app = angular.module('starter', ['ionic', 'ngFlag']);
 
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -158,16 +158,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 'menuContent': {
                     templateUrl: "templates/master/event_management/config_event_general_settings.html",
-                    controller: 'ConfigEventCtrl'
-                }
-            }
-        })
-
-        .state('app.configeventgamesettings', {
-            url: "/configeventgamesettings",
-            views: {
-                'menuContent': {
-                    templateUrl: "templates/master/event_management/config_event_game_settings.html",
                     controller: 'ConfigEventCtrl'
                 }
             }

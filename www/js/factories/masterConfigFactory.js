@@ -15,6 +15,5 @@ app.factory('MasterConfig', function(){
 			pageLink:null,
 			description:null
 		}
-	};	
-
+	};
 });
