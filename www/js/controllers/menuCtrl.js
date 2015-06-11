@@ -1,7 +1,7 @@
 /**
  * Created by joaosilva on 25/05/15.
  */
-app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup, $ionicLoading, AppService, OperatorStubService) {
+app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup, $ionicLoading, AppService, MasterStubService) {
     // Set appType - 0:Operator 1:ComSys 2:Master
     $scope.appType = AppService.getAppType();
     
