@@ -2,24 +2,24 @@
     <ion-nav-back-button>
     </ion-nav-back-button>
     <ion-nav-buttons side="right">
-        <button class="button" type="submit" id="submit" form="masterRegisterForm">
+        <button class="button" type="submit" ng-click="registerMasterInfo(masterInfo)">
             Done
         </button>
     </ion-nav-buttons>
     <ion-content>
-		<form id="masterRegisterForm" name="masterRegisterForm" novalidade ng-submit="registerMasterInfo(masterRegisterForm)">
+		<form id="masterRegisterForm" name="masterRegisterForm" novalidate ng-submit="registerMasterInfo(masterInfo)">
 	        <div class="list">
 	            <div class="item item-divider">
 	                Access Data
 	            </div>
 	            <label class="item item-input item-floating-label">
-	                <span class="input-label " ng-class="{ 'has-error' : masterRegisterForm.email.$invalid || !masterRegisterForm.email.$pristine}">Email</span>
-	                <input type="email" name="masterEmail" placeholder="Email" ng-model="masterInfo.accessData.email" required>	
+	                <span class="input-label">Email</span>
+	                <input type="email" placeholder="Email" ng-model="masterInfo.accessData.email" required>	
 	            </label>
 				
 	            <label class="item item-input item-floating-label" ng-if="!isLogged">
 	                <span class="input-label">Repeat Email</span>
-	                <input type="email" name="repeatEmail" placeholder="Repeat Email">
+	                <input type="email" placeholder="Repeat Email">
 	            </label>
 	            
 				<label class="item item-input item-floating-label">
