@@ -1,7 +1,8 @@
 app.factory('MasterConfig', function(){
 	return {
 		accessData:{
-			email:null
+			email: null,
+			password: null
 		},
 		personalData:{
 			name:null,

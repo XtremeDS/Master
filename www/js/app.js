@@ -43,7 +43,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
-        .state('app.events', {
+        /*.state('app.events', {
             url: "/events",
             views: {
                 'menuContent': {
@@ -111,7 +111,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     controller: 'SettingsCtrl'
                 }
             }
-        })
+        })*/
 
         .state('app.masterconfig', {
             url: "/masterconfig",
@@ -139,6 +139,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 'menuContent': {
                     templateUrl: "templates/master/config_master/maps_list.html",
                     controller: 'MasterMapsCtrl'
+                }
+            }
+        })
+		
+        .state('app.masternewmap', {
+            url: "/masternewmap",
+            views: {
+                'menuContent': {
+                    templateUrl: "templates/zones.html",
+                    controller: 'ZoneCtrl'
                 }
             }
         })

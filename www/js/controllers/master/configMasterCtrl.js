@@ -9,7 +9,7 @@ app.controller('ConfigMasterCtrl', function ($scope, AppService, CommonStubServi
 	}
 	
 	// Set userLogged - 0:Not logged 1:Logged
-    $scope.isLogged = AppService.getIsLogged();
+    $scope.isLogged = 1;
 
 	$scope.doMasterLogout = function() {
 		console.log('Logout pressed');

@@ -2,19 +2,13 @@
 	<ion-nav-back-button>
   	</ion-nav-back-button>
 	<ion-nav-buttons side="right">
-      <button class="button">
-        <i class="icon ion-ios-plus"></i>
-      </button>
+		  <a class="button icon-right ion-plus-round" href="#/app/masternewmap"></a>
     </ion-nav-buttons>
     <ion-content>
 		<ion-list show-delete="shouldShowDelete" can-swipe="listCanSwipe">
 	  		<ion-item ng-repeat="item in maps" class="item-thumbnail-left">
 		    <h2>{{item.title}}</h2>
 		    <p>{{item.description}}</p>
-			
-		    <ion-option-button class="button-positive"ng-click="share(item)">
-		      Share
-		    </ion-option-button>
 		    
 			<ion-option-button class="button-info" ng-click="edit(item)">
 		      Edit

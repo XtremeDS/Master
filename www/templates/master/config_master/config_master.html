@@ -8,7 +8,10 @@
         <div class="list card">
             <a href="#/app/masterconfiguser" class="item item-icon-left item-icon-right">
                 <i class="icon ion-person"></i>
-                Personal Data
+                
+				<div ng-if="!isLogged">Sign Up</div>
+				<div ng-if="isLogged">Change Data</div>
+				
 				<i class="icon ion-ios-arrow-right"></i>
             </a>
 

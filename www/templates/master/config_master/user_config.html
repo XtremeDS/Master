@@ -14,17 +14,12 @@
 	            </div>
 	            <label class="item item-input item-floating-label">
 	                <span class="input-label " ng-class="{ 'has-error' : masterRegisterForm.email.$invalid || !masterRegisterForm.email.$pristine}">Email</span>
-	                <input type="email" name="email" placeholder="Email" ng-model="masterInfo.accessData.email" required>	
+	                <input type="email" name="masterEmail" placeholder="Email" ng-model="masterInfo.accessData.email" required>	
 	            </label>
-				
-				<div class="form-errors" ng-messages="masterRegisterForm.email.$error && masterRegisterForm.email!=''">
-					<div class="form-error" ng-message="required">Campo Email é obrigatorio</div>
-				</div>
 				
 	            <label class="item item-input item-floating-label" ng-if="!isLogged">
 	                <span class="input-label">Repeat Email</span>
 	                <input type="email" name="repeatEmail" placeholder="Repeat Email">
-					<p ng-show="masterRegisterForm.email != masterRegisterForm.repeatEmail" class="help-block">Email and Repeat Email must be equal </p>	
 	            </label>
 	            
 				<label class="item item-input item-floating-label">
