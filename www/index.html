@@ -1,77 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
 
-	<link href="lib/ionic/css/ionic.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<link href="lib/ionic-datepicker/dist/style.css" rel="stylesheet">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="lib/ionic-datepicker/dist/style.css" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="http://cloud.github.com/downloads/lafeber/world-flags-sprite/flags16.css" />
-	<link rel="stylesheet" type="text/css" href="http://cloud.github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
+    <link rel="stylesheet" type="text/css"
+          href="http://cloud.github.com/downloads/lafeber/world-flags-sprite/flags16.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://cloud.github.com/downloads/lafeber/world-flags-sprite/flags32.css"/>
 
-	<!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-		<link href="css/ionic.app.css" rel="stylesheet">
-		-->
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+        <link href="css/ionic.app.css" rel="stylesheet">
+        -->
 
-		<!-- ionic/angularjs js -->
-		<script src="lib/ionic/js/ionic.bundle.js"></script>
-		<script src="lib/ng-flags/src/directives/ng-flags.js"></script>
-		<script src="cordova.js"></script>
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ng-flags/src/directives/ng-flags.js"></script>
+    <script src="cordova.js"></script>
 
-		<!-- your app's js -->
-		<script src="js/app.js"></script>
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
 
-		<!-- your app's controllers -->
-		<script src="js/controllers/configEventCtrl.js"></script>
-		<script src="js/controllers/settingsCtrl.js"></script>
-		<script src="js/controllers/mapCtrl.js"></script>
-		<script src="js/controllers/menuCtrl.js"></script>
-		<script src="js/controllers/factionsCtrl.js"></script>
-		<script src="js/controllers/eventsCtrl.js"></script>
-
-		<!--<script src="js/controllers/comsys/squadManagCtrl.js"></script>
-			<script src="js/controllers/eventDetailsCtrl.js"></script>
-			<script src="js/controllers/operator/perksCtrl.js"></script>
-			<script src="js/controllers/operator/profileCtrl.js"></script>
-			<script src="js/controllers/operator/squadCtrl.js"></script>
-			<script src="js/controllers/comsys/tacticalActionsCtrl.js"></script>
-			-->
-
-			<!-- Master Config Controllers -->
-			<script src="js/controllers/master/configMasterCtrl.js"></script>
-			<script src="js/controllers/master/masterUserConfigCtrl.js"></script>
-			<script src="js/controllers/master/masterMapsController.js"></script>
-			<script src="js/controllers/master/masterNewMapController.js"></script>
-
-			<!-- your app's services -->
-			<script src="js/services/services.js"></script>
-			<script src="js/services/masterInfoService.js"></script>
-
-			<!-- Master Factories -->
-			<script src="js/factories/eventConfigFactory.js"></script>
-			<script src="js/factories/masterConfigFactory.js"></script>
-			<script src="js/factories/countriesFactory.js"></script>
-
-			<!-- your app's CDN stub paths -->
-			<script src="https://rawgit.com/skmll/socom_bo_operator/master/www/js/services/common-stub-service.js"></script>
-			<!--<script src="https://rawgit.com/skmll/socom_bo_operator/master/www/js/services/operator-stub-service.js"></script>-->
-			<!-- <script src="https://rawgit.com/skmll/socom_bo_operator/master/www/js/services/master-stub-service.js"></script> -->
+    <!-- your app's controllers -->
+    <script src="js/controllers/configEventCtrl.js"></script>
+    <script src="js/controllers/settingsCtrl.js"></script>
+    <script src="js/controllers/mapCtrl.js"></script>
+    <script src="js/controllers/menuCtrl.js"></script>
+    <script src="js/controllers/factionsCtrl.js"></script>
+    <script src="js/controllers/eventsCtrl.js"></script>
+    <script src="js/controllers/liveCtrl.js"></script>
 
 
-			<script src="js/services/stub/master-stub-service.js"></script>
+    <!--<script src="js/controllers/comsys/squadManagCtrl.js"></script>
+        <script src="js/controllers/eventDetailsCtrl.js"></script>
+        <script src="js/controllers/operator/perksCtrl.js"></script>
+        <script src="js/controllers/operator/profileCtrl.js"></script>
+        <script src="js/controllers/operator/squadCtrl.js"></script>
+        <script src="js/controllers/comsys/tacticalActionsCtrl.js"></script>
+        -->
+
+    <!-- Master Config Controllers -->
+    <script src="js/controllers/master/configMasterCtrl.js"></script>
+    <script src="js/controllers/master/masterUserConfigCtrl.js"></script>
+    <script src="js/controllers/master/masterMapsController.js"></script>
+    <script src="js/controllers/master/masterNewMapController.js"></script>
+
+    <!-- your app's services -->
+    <script src="js/services/services.js"></script>
+    <script src="js/services/masterInfoService.js"></script>
+
+    <!-- Master Factories -->
+    <script src="js/factories/eventConfigFactory.js"></script>
+    <script src="js/factories/masterConfigFactory.js"></script>
+    <script src="js/factories/countriesFactory.js"></script>
+
+    <!-- your app's CDN stub paths -->
+    <script src="https://rawgit.com/skmll/socom_bo_operator/master/www/js/services/common-stub-service.js"></script>
+    <!--<script src="https://rawgit.com/skmll/socom_bo_operator/master/www/js/services/operator-stub-service.js"></script>-->
+    <!-- <script src="https://rawgit.com/skmll/socom_bo_operator/master/www/js/services/master-stub-service.js"></script> -->
 
 
-			<!-- Google Maps js -->
-			<!-- Key-iOS: AIzaSyBFBsgwET0eWQmpRkUpJBw8UcsQqgcvdKo -->
-			<!-- Key-Android: AIzaSyCX27UwtZi91KwTuN2To9MHFHPW0d8ZOiM -->
-			<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBFBsgwET0eWQmpRkUpJBw8UcsQqgcvdKo&sensor=true"></script>
+    <script src="js/services/stub/master-stub-service.js"></script>
 
-		</head>
 
-		<body ng-app="starter">
-			<ion-nav-view></ion-nav-view>
-		</body>
-		</html>
+    <!-- Google Maps js -->
+    <!-- Key-iOS: AIzaSyBFBsgwET0eWQmpRkUpJBw8UcsQqgcvdKo -->
+    <!-- Key-Android: AIzaSyCX27UwtZi91KwTuN2To9MHFHPW0d8ZOiM -->
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBFBsgwET0eWQmpRkUpJBw8UcsQqgcvdKo&sensor=true"></script>
+
+</head>
+
+<body ng-app="starter">
+<ion-nav-view></ion-nav-view>
+</body>
+</html>

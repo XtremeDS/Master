@@ -1,0 +1,56 @@
+<ion-view view-title="Live" style="background-color: rgba(99, 99, 99, 0.05)">
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon ion-ios-navigate-outline" id="buttonLocation" ng-click="centerOnMe()"></a>
+        <a class="button button-clear" ng-if="appType==0" ng-click="openSeeActivePerksModal()">Perks</a>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="row text-center">
+            <div class="card text-center padding col">
+                <div class="row">
+                    <div class="col col-20 text-left">
+                        <li class="button button-icon icon ion-record" style="color: #c3000a"> Live</li>
+                    </div>
+                    <div class="col col-60">
+                        <h3>3 vs 4</h3>
+                        <a class="button button-icon icon ion-pause"></a>
+                        <a class="button button-icon icon ion-stop"></a>
+                    </div>
+                    <div class="col col-20">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="width: 100%; height: 100%;">
+            <div class="col col-20">
+                <div class="card text-center padding">
+                    <h3>Equipa 1</h3>
+                    <ul>
+                        <li>oladsas</li>
+                        <li>oladsas</li>
+                        <li>oladsas</li>
+                        <li>oladsas</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col col-60" style="height: 100%;">
+                <div class="card padding" style="height: 100%;">
+                    <div id="map-canvas" data-tap-disabled="true" style="height: 100%"></div>
+                </div>
+            </div>
+            <div class="col col-20">
+                <div class="card text-center padding">
+                    <h3>Equipa 2</h3>
+                    <ul>
+                        <li>oladsas</li>
+                        <li>oladsas</li>
+                        <li>oladsas</li>
+                        <li>oladsas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="bar-dark" ng-if="appType==0">
+
+    </ion-footer-bar>
+</ion-view>
