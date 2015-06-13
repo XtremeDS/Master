@@ -28,6 +28,11 @@
                         Login/Sign Up
                     </i>
                 </ion-item>
+                <ion-item item-icon-left nav-clear menu-close href="#/app/live">
+                    <i class="icon ion-play">
+                        Live
+                    </i>
+                </ion-item>
                 <ion-item item-icon-left nav-clear menu-close href="#/app/events" ng-controller="EventsCtrl" ng-click="getAllEvents()" ng-if="isLogged==1 && inEvent==0">
                     <i class="icon ion-calendar">
                         Events
