@@ -1,4 +1,4 @@
-app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService, CommonStubService, MasterConfig, Countries) {
+app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService, MasterStubService, MasterConfig, Countries) {
 	
 	$scope.masterInfo = MasterConfig;
 	$scope.isFormValid = false;
@@ -6,12 +6,11 @@ app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService
 	
 	$scope.registerMasterInfo = function(submitedForm){
 		//In case is logged is a change data
-		console.log(submitedForm);
+		console.log(submitedForm.accessData.email);
 		console.log();
-		if(!submitedForm.$invalid){
-			/* Call Stub */
-			
-		}
+		console.log(MasterStubService.createMaster(submitedForm.accessData.email, submitedForm.accessData.password,  submitedForm.personalData.name, null,
+				submitedForm.personalData.phone, null, submitedForm.personalData.zipcode, submitedForm.personalData.country.countryName, submitedForm.association.description, submitedForm.association.pageLink, submitedForm.association.videoLink ));
+		
 	}
 	
 	/* Choose Country Modal */
