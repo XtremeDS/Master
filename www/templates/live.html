@@ -1,4 +1,4 @@
-<ion-view view-title="Live" style="background-color: rgba(99, 99, 99, 0.05)">
+<ion-view id="view-live" view-title="Live" style="background-color: rgba(99, 99, 99, 0.05)">
     <ion-nav-buttons side="right">
         <a class="button button-icon icon ion-ios-navigate-outline" id="buttonLocation" ng-click="centerOnMe()"></a>
         <a class="button button-clear" ng-if="appType==0" ng-click="openSeeActivePerksModal()">Perks</a>
@@ -12,7 +12,7 @@
                     </div>
                     <div class="col col-60">
                         <h3>3 vs 4</h3>
-                        <a ng-click="blockUI('#map-canvas')" class="button button-icon icon ion-pause"></a>
+                        <a ng-click="blockUI('#view-live')" class="button button-icon icon ion-pause"></a>
                         <a class="button button-icon icon ion-stop"></a>
                     </div>
                     <div class="col col-20">
@@ -22,7 +22,7 @@
         </div>
         <div class="row" style="width: 100%; height: 100%;">
             <div class="col col-20">
-                <div class="card text-center padding">
+                <div class="card text-center padding" style="height: 740px">
                     <h3>Equipa 1</h3>
                     <ul>
                         <li>oladsas</li>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="col col-20">
-                <div class="card text-center padding">
+                <div class="card text-center padding" style="height: 740px">
                     <h3>Equipa 2</h3>
                     <ul>
                         <li>oladsas</li>

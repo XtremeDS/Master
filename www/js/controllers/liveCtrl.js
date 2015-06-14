@@ -34,11 +34,13 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
         $scope.modalSeeActivePerks.show();
     };
 
+    window.block = function (container, stop) {
+        $scope.blockUI(container, stop);
+    };
     $scope.blockUI = function (container, stop) {
         if ($($(container)).find('.blockUI').length > 0) $(container).find('.blockUI').remove();
-
         if (!stop) {
-            $(container).append('<div class="blockUI"><div class="play-button"><a class="button button-icon icon ion-play custom-icon"></a></div></div>');
+            $(container).append('<div class="blockUI"><div class="play-button"><a class="button button-icon icon ion-play custom-icon" onclick="window.block(\'#view-live\',true)"></a></div></div>');
         }
     };
 
