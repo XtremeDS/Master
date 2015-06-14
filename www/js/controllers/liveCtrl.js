@@ -34,14 +34,42 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
         $scope.modalSeeActivePerks.show();
     };
 
-    window.block = function (container, stop) {
+    window.resumeEvent = function (container, stop) {
+        // Aqui resumir o timer e coisas assim
         $scope.blockUI(container, stop);
     };
     $scope.blockUI = function (container, stop) {
         if ($($(container)).find('.blockUI').length > 0) $(container).find('.blockUI').remove();
         if (!stop) {
-            $(container).append('<div class="blockUI"><div class="play-button"><a class="button button-icon icon ion-play custom-icon" onclick="window.block(\'#view-live\',true)"></a></div></div>');
+            $(container).append('<div class="blockUI"><div class="play-button"><a class="button button-icon icon ion-play custom-icon" onclick="window.resumeEvent(\'#view-live\',true)"></a></div></div>');
         }
+    };
+
+    $scope.stopEventAndSwitchView = function () {
+        // When event is stopped then switch to some other tab
+    };
+
+    $scope.closeStopEventModal = function () {
+        $scope.modal.hide();
+    };
+
+    $scope.pauseEvent = function () {
+        // Parar aqui o timer e coisas desse estilo
+        $scope.blockUI('#view-live');
+    };
+
+    $scope.stopEvent = function () {
+        $ionicModal.fromTemplateUrl('templates/modals/stop_event_modal.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        });
+        //Cleanup the modal when we're done with it!
+        $scope.$on('$destroy', function() {
+            $scope.modal.remove();
+        });
     };
 
     $scope.showRequest = function (action) {
