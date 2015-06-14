@@ -21,8 +21,7 @@ app.run(function ($ionicPlatform) {
             StatusBar.style(2);
         }
     });
-})
-
+});
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 
@@ -39,6 +38,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 'menuContent': {
                     templateUrl: "templates/map.html",
                     controller: 'MapCtrl'
+                }
+            }
+        })
+
+        .state('app.live', {
+            url: "/live",
+            views: {
+                'menuContent': {
+                    templateUrl: "templates/live.html",
+                    controller: 'LiveCtrl'
                 }
             }
         })
