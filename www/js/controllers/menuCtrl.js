@@ -210,13 +210,5 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
             });
         }
     };
-
-    // Create the join squad modal that we will use later
-    $ionicModal.fromTemplateUrl('templates/operator/joinSquad.html', {
-        scope: $scope
-    }).then(function (modalJoinSquad) {
-        $scope.modalJoinSquad = modalJoinSquad;
-    });
-
     
 });

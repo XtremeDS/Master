@@ -1,4 +1,4 @@
-app.controller('FactionsCtrl', function ($scope, $ionicModal) {
+app.controller('FactionsCtrl', function ($scope, $ionicModal, MasterStubService) {
     $ionicModal.fromTemplateUrl('templates/master/faction_management/config_faction.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -12,6 +12,16 @@ app.controller('FactionsCtrl', function ($scope, $ionicModal) {
 
     $scope.closeCreateFaction = function () {
         $scope.modalCreateFaction.hide();
+    };
+
+    $scope.addNewFaction = function (form) {
+        console.log("Creating a new faction...");
+        MasterStubService.createFaction(
+            form.eventID,
+            form.factionName,
+            form.factionPIN);
+
+        console.log("Added a new faction to the event" + form.eventID);
     };
 
     //Cleanup the modal when we're done with it!

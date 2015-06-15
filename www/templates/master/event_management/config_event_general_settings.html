@@ -13,7 +13,7 @@
 
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Name</span>
-                    <input type="text" placeholder="Name" name="eventName" ng-model="event.eventName" required
+                    <input type="text" placeholder="Name" name="eventName" ng-model="eventInfo.gameSettings.name" required
                            ng-minlength="5" ng-maxlength="50">
 
                     <p ng-show="eventSettingsForm.eventName.$invalid && !eventSettingsForm.eventName.$pristine"
@@ -28,18 +28,18 @@
 
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Description/Briefing</span>
-                    <input type="text" placeholder="Description" name="eventDescription" ng-model="event.eventDescription">
+                    <input type="text" placeholder="Description" name="eventDescription" ng-model="eventInfo.gameSettings.description">
                 </label>
 
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Additional Information</span>
                     <textarea placeholder="Additional Information" name="eventAdditionalInformation"
-                              ng-model="event.eventAdditionalInformation"></textarea>
+                              ng-model="eventInfo.gameSettings.additionalInfo"></textarea>
                 </label>
 
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Address</span>
-                    <input type="text" placeholder="Address" name="eventAddress" ng-model="event.eventAddress"
+                    <input type="text" placeholder="Address" name="eventAddress" ng-model="eventInfo.gameSettings.address"
                            ng-minlength="10"
                            ng-maxlength="200" required>
 
@@ -55,7 +55,7 @@
 
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Rules</span>
-                    <input type="text" placeholder="Rules" name="eventRules" ng-model="event.eventRules" ng-minlength="50"
+                    <input type="text" placeholder="Rules" name="eventRules" ng-model="eventInfo.gameSettings.rules" ng-minlength="50"
                            ng-maxlength="500">
 
                     <p ng-show="eventSettingsForm.eventRules.$invalid && !eventSettingsForm.eventRules.$pristine"
@@ -70,7 +70,7 @@
 
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Restrictions</span>
-                    <input type="text" placeholder="Restrictions" name="eventRestrictions" ng-model="event.eventProhibitions"
+                    <input type="text" placeholder="Restrictions" name="eventRestrictions" ng-model="eventInfo.gameSettings.restrictions"
                            ng-minlength="20" ng-maxlength="500" required>
 
                     <p ng-show="eventSettingsForm.eventRestrictions.$invalid && !eventSettingsForm.eventRestrictions.$pristine"
@@ -85,7 +85,7 @@
 
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Proceedments</span>
-                    <input type="text" placeholder="Proceedments" name="eventProceedments" ng-model="event.eventProceedments">
+                    <input type="text" placeholder="Proceedments" name="eventProceedments" ng-model="eventInfo.gameSettings.proceedments">
                 </label>
 
                 <div class="item item-divider">
@@ -95,7 +95,7 @@
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Reg. Start Date</span>
                     <input type="datetime-local" placeholder="Reg. Start Date (yyyy-mm-ddThh24:mi:ss)" name="eventRegistryStartDate"
-                           ng-model="event.eventRegistryStartDate" required>
+                           ng-model="eventInfo.dates.regStartDate" required>
 
                     <p ng-show="eventSettingsForm.eventRegistryStartDate.$invalid && !eventSettingsForm.eventRegistryStartDate.$pristine"
                        class="help-block">Registry Start Date is Required </p>
@@ -104,7 +104,7 @@
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Reg. End Date</span>
                     <input type="datetime-local" placeholder="Reg. End Date (yyyy-mm-ddThh24:mi:ss)" name="eventRegistryEndDate"
-                           ng-model="event.eventRegistryEndDate" required>
+                           ng-model="eventInfo.dates.regEndDate" required>
 
                     <p ng-show="eventSettingsForm.eventRegistryEndDate.$invalid && !eventSettingsForm.eventRegistryEndDate.$pristine"
                        class="help-block">Registry End Date is Required </p>
@@ -113,7 +113,7 @@
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Event Start Date</span>
                     <input type="datetime-local" placeholder="Event Start Date (yyyy-mm-ddThh24:mi:ss)" name="eventStartDate"
-                           ng-model="event.eventStartDate" required>
+                           ng-model="eventInfo.dates.eventStartDate" required>
 
                     <p ng-show="eventSettingsForm.eventStartDate.$invalid && !eventSettingsForm.eventStartDate.$pristine"
                        class="help-block">Event Start Date is Required </p>
@@ -122,7 +122,7 @@
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Event End Date</span>
                     <input type="datetime-local" placeholder="Event End Date (yyyy-mm-ddThh24:mi:ss)" name="eventEndDate"
-                           ng-model="event.eventEndDate" required>
+                           ng-model="eventInfo.dates.eventEndDate" required>
 
                     <p ng-show="eventSettingsForm.eventEndDate.$invalid && !eventSettingsForm.eventEndDate.$pristine"
                        class="help-block">Event End Date is Required </p>
@@ -135,7 +135,7 @@
                 <label class="item item-input item-floating-label">
                     <span class=" input-label">Initial Perk Points</span>
                     <input type="number" placeholder="Initial Perk Points" name="initialPerkPoints"
-                           ng-model="event.initialPerkPoints" required>
+                           ng-model="eventInfo.generalSettings.initialPerkPoints" required>
 
                     <p ng-show="eventSettingsForm.initialPerkPoints.$invalid && !eventSettingsForm.initialPerkPoints.$pristine"
                        class="help-block">Initial Perk Points Required</p>
@@ -144,7 +144,7 @@
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Max. ComSys/Faction</span>
                     <input type="number" placeholder="Max. ComSys/Faction" name="maxComsysPerFaction"
-                           ng-model="event.maxComsysPerFaction" required>
+                           ng-model="eventInfo.generalSettings.maxComsysFaction" required>
 
                     <p ng-show="eventSettingsForm.maxComsysPerFaction.$invalid && !eventSettingsForm.maxComsysPerFaction.$pristine"
                        class="help-block">Max. ComSys/Faction Required</p>
@@ -153,7 +153,7 @@
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Max. Operator/ComSys</span>
                     <input type="number" placeholder="Max. Operator/ComSys" name="maxOperPerComSys"
-                           ng-model="event.maxOperPerComSys" required>
+                           ng-model="eventInfo.generalSettings.maxOperatorComsys" required>
 
                     <p ng-show="eventSettingsForm.maxOperPerComSys.$invalid && !eventSettingsForm.maxOperPerComSys.$pristine"
                        class="help-block">Max. Operator/ComSys Required</p>
@@ -161,7 +161,7 @@
 
                 <label class="item item-input item-floating-label">
                     <spsan class="input-label">Respawn Delay</spsan>
-                    <input type="number" placeholder="Respawn Delay" name="respawnDelay" ng-model="event.respawnDelay"
+                    <input type="number" placeholder="Respawn Delay" name="respawnDelay" ng-model="eventInfo.generalSettings.respawnDelay"
                            required>
 
                     <p ng-show="eventSettingsForm.respawnDelay.$invalid && !eventSettingsForm.respawnDelay.$pristine"
@@ -171,7 +171,7 @@
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Number of Factions in Game</span>
                     <input type="number" placeholder="Number of Factions in Game" name="numberOfFactionsInGame"
-                           ng-model="event.numberOfFactionsInGame" required>
+                           ng-model="eventInfo.generalSettings.factionsInGame" required>
 
                     <p ng-show="eventSettingsForm.numberOfFactionsInGame.$invalid && !eventSettingsForm.numberOfFactionsInGame.$pristine"
                        class="help-block">Number Of Factions In Game Required</p>
@@ -180,7 +180,7 @@
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Minimum GPS Refresh Rate</span>
                     <input type="number" placeholder="Maximum GPS Refresh Rate" name="minGpsRefreshRate"
-                           ng-model="event.minGpsRefreshRate" required>
+                           ng-model="eventInfo.generalSettings.minGpsRefRate" required>
 
                     <p ng-show="eventSettingsForm.minGpsRefreshRate.$invalid && !eventSettingsForm.minGpsRefreshRate.$pristine"
                        class="help-block">GPS Refresh Rate is Required</p>
@@ -189,7 +189,7 @@
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Maximum GPS Refresh Rate</span>
                     <input type="number" placeholder="Maximum GPS Refresh Rate" name="maxGpsRefreshRate"
-                           ng-model="event.maxGpsRefreshRate" required>
+                           ng-model="eventInfo.generalSettings.maxGpsRefRate" required>
 
                     <p ng-show="eventSettingsForm.maxGpsRefreshRate.$invalid && !eventSettingsForm.maxGpsRefreshRate.$pristine"
                        class="help-block">GPS Refresh Rate is Required</p>
@@ -197,7 +197,7 @@
 
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Points Per Kill</span>
-                    <input type="number" placeholder="Points Per Kill" name="pointsPerKill" ng-model="event.pointsPerKill"
+                    <input type="number" placeholder="Points Per Kill" name="pointsPerKill" ng-model="eventInfo.generalSettings.pointsPerKill"
                            required>
 
                     <p ng-show="eventSettingsForm.pointsPerKill.$invalid && !eventSettingsForm.pointsPerKill.$pristine"
@@ -229,7 +229,7 @@
                 </label>
             </div>
 
-            <button class="button button-block button-dark" type="submit" ng-click="saveEventGeneralSettings(event)"
+            <button class="button button-block button-dark" type="submit" ng-click="saveEventGeneralSettings(eventInfo)"
                     ng-disabled="eventSettingsForm.$invalid">Save
             </button>
         </form>

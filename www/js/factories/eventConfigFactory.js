@@ -2,23 +2,23 @@ app.factory('EventConfig', function(){
 	return {
         eventId: 0,
 		gameSettings:{
-			name:null,
-			description:null,
-			additionalInfo:null,
-            address:null,
-            rules:null,
-            restrictions:null,
-            proceedments:null
+			name:"Test event",
+			description:"Testing of creating an event.",
+			additionalInfo:"Additional info.",
+            address:"Address street 1000, Portugal",
+            rules:"No rules man, just kill everyone you see in every way you can man dude.",
+            restrictions:"No restrictions man, just kill everyone you see in every way you can man dude.",
+            proceedments:"Proceedments"
 		},
 		generalSettings:{
-			initialPerkPoints:null,
-			maxComsysFaction:null,
-			maxOperatorComsys:null,
-			respawnDelay:null,
-            factionsInGame:null,
-            maxGpsRefRate:null,
-            minGpsRefRate:null,
-            pointsPerKill:null,
+			initialPerkPoints:100,
+			maxComsysFaction:5,
+			maxOperatorComsys:5,
+			respawnDelay:5,
+            factionsInGame:3,
+            maxGpsRefRate:1,
+            minGpsRefRate:5,
+            pointsPerKill:100,
             comsysBasesVisible:null,
             respawnPointsVisible:null
 		},

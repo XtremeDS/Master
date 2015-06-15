@@ -1,4 +1,4 @@
-app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService, CommonStubService, MasterConfig, Countries) {
+app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService, MasterStubService, MasterConfig, Countries) {
 	
 	$scope.masterInfo = MasterConfig;
 	$scope.isFormValid = false;
@@ -6,12 +6,53 @@ app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService
 	
 	$scope.registerMasterInfo = function(submitedForm){
 		//In case is logged is a change data
-		console.log(submitedForm);
-		console.log(submitedForm.$valid);
-		if(submitedForm.$valid){
-			/* Call Stub */
-			
+		var result;
+		var login;
+
+		MasterStubService.loginCheckMaster()
+		.success(function (data) {
+			login = data.response;
+		})
+		.error(function (error) {
+			$scope.loginCheckResult = 'Unable to load data: ' + error;
+		});
+
+		if(login == 0){
+			MasterStubService.createMaster(submitedForm.accessData.email, submitedForm.accessData.password,"teste",null,
+			submitedForm.personalData.phone, "Rua da estrada", submitedForm.personalData.zipCode, submitedForm.personalData.country.countryName, submitedForm.association.description, 
+			submitedForm.association.pageLink, submitedForm.association.videoLink)
+			.success(function (data) {
+				if(data.response == 0){
+					for(var key in data.errors) {
+						var value = data.errors[key];
+						console.log(value);	
+					}
+				}
+			})
+			.error(function (error) {
+				$scope.createMasterResult = 'Unable to load data: ' + error;
+			});
+		}else{
+			MasterStubService.updateMasterPersonalConfig(0, 2, "teste3", null,
+			submitedForm.personalData.phone, "Rua Alterada", submitedForm.personalData.zipCode, submitedForm.personalData.country,submitedForm.association.description, 
+			submitedForm.association.pageLink, submitedForm.association.videoLink)
+			.success(function (data){
+				console.log(data);
+				$scope.updateMasterConfigResult = data.response;
+				if(data == 0){
+					Console.log("Error updating");
+				}
+			})
+			.error(function (error) {
+				$scope.updateMasterConfigResult = 'Unable to load data: ' + error;
+			});
 		}
+
+
+		/*		------TODO 
+		IF DUPLICATE 
+		IF LOGED IN UPDATE
+		*/
 	}
 	
 	/* Choose Country Modal */
