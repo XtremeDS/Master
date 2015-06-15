@@ -20,6 +20,8 @@ app.controller('FactionsCtrl', function ($scope, $ionicModal, MasterStubService)
             form.eventID,
             form.factionName,
             form.factionPIN);
+
+        console.log("Added a new faction to the event" + form.eventID);
     };
 
     //Cleanup the modal when we're done with it!

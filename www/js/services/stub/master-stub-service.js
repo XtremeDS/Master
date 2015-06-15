@@ -480,10 +480,9 @@ app.factory('MasterStubService', function ($http) {
 			return $http.get(baseUrl + 'master/event/get/id/' + eventId);
 		},
 
-		createEvent: function( name, logo, description_briefing, address, rules, prohibitions, proceedment, additional_informations,
-				registration_date_start, registration_date_end, event_date_start, event_date_end, operator_inicial_perk_points, 
+		createEvent: function( name, logo, description_briefing, address, rules, prohibitions, proceedment, additional_informations, registration_date_start, registration_date_end, event_date_start, event_date_end, operator_inicial_perk_points, 
 				max_comsys_per_faction, max_operators_per_faction, respawn_delay, gps_refresh_rate_min, gps_refresh_rate_max,
-				see_enemies_bases, see_enemies_respawn, points_per_kill ) {
+				see_enemie_bases, see_enemie_respawn, points_per_kill ) {
 
 			requestPost.url = baseUrl + 'event/create';
 
@@ -495,8 +494,8 @@ app.factory('MasterStubService', function ($http) {
 					operator_inicial_perk_points: escapeIfNotNull(operator_inicial_perk_points), 
 					max_comsys_per_faction: escapeIfNotNull(max_comsys_per_faction), max_operators_per_faction: escapeIfNotNull(max_operators_per_faction), 
 					respawn_delay: escapeIfNotNull(respawn_delay), gps_refresh_rate_min: escapeIfNotNull(gps_refresh_rate_min), 
-					gps_refresh_rate_max: escapeIfNotNull(gps_refresh_rate_max), see_enemies_bases: escapeIfNotNull(see_enemies_bases), 
-					see_enemies_reswap: escapeIfNotNull(see_enemies_respawn), points_per_kill: escapeIfNotNull(points_per_kill) };
+					gps_refresh_rate_max: escapeIfNotNull(gps_refresh_rate_max), see_enemie_bases: escapeIfNotNull(see_enemie_bases), 
+					see_enemie_respawn: escapeIfNotNull(see_enemie_respawn), points_per_kill: escapeIfNotNull(points_per_kill) };
 
 			return $http(requestPost);
 		},
@@ -504,7 +503,7 @@ app.factory('MasterStubService', function ($http) {
 		updateEvent: function( eventId, name, logo, description_briefing, address, rules, prohibitions, proceedment, additional_informations,
 				registration_date_start, registration_date_end, event_date_start, event_date_end, operator_inicial_perk_points, 
 				max_comsys_per_faction, max_operators_per_faction, respawn_delay, gps_refresh_rate_min, gps_refresh_rate_max,
-				see_enemies_bases, see_enemies_respawn, points_per_kill ) {
+				see_enemie_bases, see_enemie_respawn, points_per_kill ) {
 
 			requestPost.url = baseUrl + 'event/update/' + eventId;
 
@@ -516,8 +515,8 @@ app.factory('MasterStubService', function ($http) {
 					operator_inicial_perk_points: escapeIfNotNull(operator_inicial_perk_points), 
 					max_comsys_per_faction: escapeIfNotNull(max_comsys_per_faction), max_operators_per_faction: escapeIfNotNull(max_operators_per_faction), 
 					respawn_delay: escapeIfNotNull(respawn_delay), gps_refresh_rate_min: escapeIfNotNull(gps_refresh_rate_min), 
-					gps_refresh_rate_max: escapeIfNotNull(gps_refresh_rate_max), see_enemies_bases: escapeIfNotNull(see_enemies_bases), 
-					see_enemies_reswap: escapeIfNotNull(see_enemies_respawn), points_per_kill: escapeIfNotNull(points_per_kill) };
+					gps_refresh_rate_max: escapeIfNotNull(gps_refresh_rate_max), see_enemie_bases: escapeIfNotNull(see_enemie_bases), 
+					see_enemie_respawn: escapeIfNotNull(see_enemie_respawn), points_per_kill: escapeIfNotNull(points_per_kill) };
 
 			return $http(requestPost);
 		},
@@ -587,10 +586,6 @@ app.factory('MasterStubService', function ($http) {
 			return $http.get(baseUrl + 'event/' + eventId + '/faction/delete/' + factionPIN);
 		},
 
-		getAllFactions: function(eventId) {
-			return $http.get(baseUrl + 'event/' + eventId + '/faction/get/all');
-		},
-
 		getFactionById: function(eventId, factionId) {
 			return $http.get(baseUrl + 'event/' + eventId + '/faction/get/id/' + factionId);
 		},
@@ -599,36 +594,36 @@ app.factory('MasterStubService', function ($http) {
 			return $http.get(baseUrl + 'event/' + eventId + '/faction/' + factionPIN + '/comsys/join');
 		},
 
-		sendNotificationToEvent: function(eventId, available_responses_list, responses_list, sender, text) {
+		sendNotificationToEvent: function(eventId, available_responses_list, sender, text) {
 			var ref = new Firebase(firebaseUrl + eventId + '/');
 			var postsRef = ref.child("event_notifications");
 			postsRef.push({
 				available_responses_list: available_responses_list,
-				responses_list: responses_list,
 				sender: sender,
-				text: text
+				text: text,
+				timestamp: Firebase.ServerValue.TIMESTAMP
 			});
 		},
 
-		sendNotificationToFaction: function(eventId, factionId, available_responses_list, responses_list, sender, text) {
+		sendNotificationToFaction: function(eventId, factionId, available_responses_list, sender, text) {
 			var ref = new Firebase(firebaseUrl + eventId + '/' + factionId + '/');
 			var postsRef = ref.child("faction_notifications/");
 			postsRef.push({
 				available_responses_list: available_responses_list,
-				responses_list: responses_list,
 				sender: sender,
-				text: text
+				text: text,
+				timestamp: Firebase.ServerValue.TIMESTAMP
 			});
 		},
 
-		sendNotificationToComsys: function(eventId, factionId, comsysId, available_responses_list, responses_list, sender, text) {
+		sendNotificationToComsys: function(eventId, factionId, comsysId, available_responses_list, sender, text) {
 			var ref = new Firebase('https://socom-bo-estg-2015.firebaseio.com/events_in_progress/' + eventId + '/factions/' + factionId + '/comsys_users/' + comsysId + '/');
 			var postsRef = ref.child("comsys_notifications/");
 			var newPostRef = postsRef.push({
 				available_responses_list: available_responses_list,
-				responses_list: responses_list,
 				sender: sender,
-				text: text
+				text: text,
+				timestamp: Firebase.ServerValue.TIMESTAMP
 			});
 		},
 
@@ -638,25 +633,25 @@ app.factory('MasterStubService', function ($http) {
 				score: score
 			});
 		},
-		sendNotificationToSquad : function (eventId, factionId, squadId, available_responses_list, responses_list, sender, text) {
+		sendNotificationToSquad : function (eventId, factionId, squadId, available_responses_list, sender, text) {
 			var ref = new Firebase('https://socom-bo-estg-2015.firebaseio.com/events_in_progress/' + eventId + '/factions/' + factionId + '/squads/' + squadId + '/');
 			var postsRef = ref.child("squad_notifications/");
 			var newPostRef = postsRef.push({
 				available_responses_list: available_responses_list,
-				responses_list: responses_list,
 				sender: sender,
-				text: text
+				text: text,
+				timestamp: Firebase.ServerValue.TIMESTAMP
 			});
 		},
 
-		sendNotificationToOperator : function (eventId, factionId, IDOperator, available_responses_list, responses_list, sender, text) {
+		sendNotificationToOperator : function (eventId, factionId, IDOperator, available_responses_list, sender, text) {
 			var ref = new Firebase('https://socom-bo-estg-2015.firebaseio.com/events_in_progress/' + eventId + '/factions/' + factionId + '/operators/' + IDOperator + '/');
 			var postsRef = ref.child("operator_notifications/");
 			var newPostRef = postsRef.push({
 				available_responses_list: available_responses_list,
-				responses_list: responses_list,
 				sender: sender,
-				text: text
+				text: text,
+				timestamp: Firebase.ServerValue.TIMESTAMP
 			});		
 		},
 
@@ -671,7 +666,7 @@ app.factory('MasterStubService', function ($http) {
 
 		    allowedNotifReceivers.push({id: eventId, name: 'Event', type: 'event'});
 
-			factionsRef.on("value", function(snapshot) {
+			factionsRef.once("value", function(snapshot) {
 				factions = snapshot.val();
 				var i = 0;
 			    for (var id in factions) {
@@ -687,7 +682,6 @@ app.factory('MasterStubService', function ($http) {
 			            done(allowedNotifReceivers);
 			        }
 			    });
-				factionsRef.off();
 		    }, function (errorObject) {
 		      console.log("The read failed: " + errorObject.code);
 		    });
@@ -702,36 +696,31 @@ app.factory('MasterStubService', function ($http) {
 				var squads;
 				var comsys;
 
-				ref.on("value", function(snapshot) {
+				ref.once("value", function(snapshot) {
 					operators = snapshot.val();
 					for (var id in operators) {
 						allowedNotifReceivers.push({id: id, name: operators[id].nickname, type: 'operator'});
 					};
 
-					squadRef.on("value", function(snapshot) {
+					squadRef.once("value", function(snapshot) {
 					squads = snapshot.val();
 
 						for (var id in squads) {
-							allowedNotifReceivers.push({id: id, name: squads[id].tag, type: 'squad'});
+							allowedNotifReceivers.push({id: id, name: 'Squad ' + squads[id].tag, type: 'squad'});
 						};
 
-						comsysRef.on("value", function(snapshot) {
+						comsysRef.once("value", function(snapshot) {
 							comsys = snapshot.val();
 							for (var id in comsys) {
 								allowedNotifReceivers.push({id: id, name: comsys[id].nickname, type: 'comsys'});
 							};
 							callback();
-							comsysRef.off();
 					    }, function (errorObject) {
 					      console.log("The read failed: " + errorObject.code);
 					    });
-
-						squadRef.off();
 				    }, function (errorObject) {
 				      console.log("The read failed: " + errorObject.code);
 				    });
-
-					ref.off();
 			    }, function (errorObject) {
 			      console.log("The read failed: " + errorObject.code);
 			    });

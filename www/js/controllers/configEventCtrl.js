@@ -28,6 +28,16 @@ app.controller('ConfigEventCtrl', function ($scope, EventConfig, MasterStubServi
     $scope.saveEventGeneralSettings = function(form){
         //invoke create event
 
+        var seeEnemyBases = 0;
+        var seeEnemyRespawn = 0;
+
+        if ($scope.checkboxes[0].checked) {
+            seeEnemyBases = 1;
+        }
+        if ($scope.checkboxes[1].checked) {
+            seeEnemyRespawn = 1;
+        }
+
         console.log("Event Name " + form.eventName);
         console.log("Event Description " + form.eventDescription);
         console.log("Event Address " + form.eventAddress);
@@ -45,9 +55,10 @@ app.controller('ConfigEventCtrl', function ($scope, EventConfig, MasterStubServi
         console.log("Respawn Delay " + form.respawnDelay);
         console.log("Min GPS Ref. Rate " + form.minGpsRefreshRate);
         console.log("Max GPS Ref. Rate " + form.maxGpsRefreshRate);
-        console.log("Comsys Bases Visible" + $scope.checkboxes[0].checked);
-        console.log("Respawn Points Visible" + $scope.checkboxes[1].checked);
+        console.log("Comsys Bases Visible" + seeEnemyBases);
+        console.log("Respawn Points Visible" + seeEnemyRespawn);
         console.log("Points Per Kill" + form.pointsPerKill);
+
 
         MasterStubService.createEvent(form.eventName,
             null,
@@ -67,9 +78,11 @@ app.controller('ConfigEventCtrl', function ($scope, EventConfig, MasterStubServi
         form.respawnDelay,
         form.minGpsRefreshRate,
         form.maxGpsRefreshRate,
-        $scope.checkboxes[0].checked,
-        $scope.checkboxes[1].checked,
+        seeEnemyBases,
+        seeEnemyRespawn,
         form.pointsPerKill);
+
+        console.log("Pushed a new event to the server.");
     };
 
     //what to do when deleting
