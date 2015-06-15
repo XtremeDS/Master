@@ -97,12 +97,12 @@ app.controller('EventsCtrl', function ($scope, AppService, MasterStubService) {
     };
 
     //what to do when deleting
-    $scope.onItemDelete = function (item) {
-        $scope.items.splice($scope.items.indexOf(item), 1);
-        console.log($scope.items.indexOf(item).id);
-        //MasterStubService.deleteEvent();
+    $scope.onItemDelete = function (itemIndex) {
+        eventIdToDelete = $scope.items[itemIndex].id;
+        MasterStubService.deleteEvent(eventIdToDelete);
+        console.log("Successfully deleted event with the ID: " + eventIdToDelete);
+        $scope.items.splice($scope.items.indexOf(itemIndex), 1);
     };
-
 
     // Reading the events from the server and displaying them on the interface
     var allEvents;
@@ -110,12 +110,12 @@ app.controller('EventsCtrl', function ($scope, AppService, MasterStubService) {
         .success(function (data) {
             allEvents = data.list;
             console.log("SUCCESS in retrieving events from server!");
-            console.log(allEvents[0]['name']);
+            //console.log(allEvents[0]['name']);
 
             $scope.items = ([]);
             for (i = 0; i < allEvents.length; i++) { 
-                $scope.items.push({id: allEvents[i]['id'], name: allEvents[i]['name'], id: allEvents[i]['location']});
-                console.log($scope.items);
+                $scope.items.push({id: allEvents[i]['id'], name: allEvents[i]['name'], description: allEvents[i]['description_briefing']});
+                //console.log($scope.items);
             }
         })
         .error(function (error) {

@@ -11,14 +11,14 @@ app.factory('EventConfig', function(){
             proceedments:"Proceedments"
 		},
 		generalSettings:{
-			initialPerkPoints:"100",
-			maxComsysFaction:"5",
-			maxOperatorComsys:"5",
-			respawnDelay:"5",
-            factionsInGame:"3",
-            maxGpsRefRate:"1",
-            minGpsRefRate:"5",
-            pointsPerKill:"100",
+			initialPerkPoints:100,
+			maxComsysFaction:5,
+			maxOperatorComsys:5,
+			respawnDelay:5,
+            factionsInGame:3,
+            maxGpsRefRate:1,
+            minGpsRefRate:5,
+            pointsPerKill:100,
             comsysBasesVisible:null,
             respawnPointsVisible:null
 		},

@@ -38,49 +38,48 @@ app.controller('ConfigEventCtrl', function ($scope, EventConfig, MasterStubServi
             seeEnemyRespawn = 1;
         }
 
-        console.log("Event Name " + form.eventName);
-        console.log("Event Description " + form.eventDescription);
-        console.log("Event Address " + form.eventAddress);
-        console.log("Event Rules " + form.eventRules);
-        console.log("Event Restrictions " + form.eventRestrictions);
-        console.log("Event Proceedments " + form.eventProceedments);
-        console.log("Event Additional Info " + form.eventAdditionalInformation);
-        console.log("Event Reg. Start Date " + form.eventRegistryStartDate);
-        console.log("Event Reg. End Date " + form.eventRegistryEndDate);
-        console.log("Event Start Date " + form.eventStartDate);
-        console.log("Event End Date " + form.eventEndDate);
-        console.log("Event Initial Perk Points " + form.initialPerkPoints);
-        console.log("Max Comsys Per Factions " + form.maxComsysPerFaction);
-        console.log("Max Opers Per Comsys " + form.maxOperPerComSys);
-        console.log("Respawn Delay " + form.respawnDelay);
-        console.log("Min GPS Ref. Rate " + form.minGpsRefreshRate);
-        console.log("Max GPS Ref. Rate " + form.maxGpsRefreshRate);
-        console.log("Comsys Bases Visible" + seeEnemyBases);
-        console.log("Respawn Points Visible" + seeEnemyRespawn);
-        console.log("Points Per Kill" + form.pointsPerKill);
+        console.log("Event Name " + form.gameSettings.name);
+        console.log("Event Description " + form.gameSettings.description);
+        console.log("Event Address " + form.gameSettings.address);
+        console.log("Event Rules " + form.gameSettings.rules);
+        console.log("Event Restrictions " + form.gameSettings.restrictions);
+        console.log("Event Proceedments " + form.gameSettings.proceedments);
+        console.log("Event AddInfo " + form.gameSettings.additionalInfo);
+        console.log("Event Reg Start Date " + form.dates.regStartDate);
+        console.log("Event Reg End Date " + form.dates.regEndDate);
+        console.log("Event Start Date " + form.dates.eventStartDate);
+        console.log("Event End Date " + form.dates.eventEndDate);
+        console.log("Event Perk Points " + form.generalSettings.initialPerkPoints);
+        console.log("Event MaxComsysFaction " + form.generalSettings.maxComsysFaction);
+        console.log("Event MaxOperatorComsys " + form.generalSettings.maxOperatorComsys);
+        console.log("Respawn Delay " + form.generalSettings.respawnDelay);
+        console.log("MinGPS " + form.generalSettings.minGpsRefRate);
+        console.log("MaxGPS " + form.generalSettings.maxGpsRefRate);
+        console.log("SeeEnemyBases " + seeEnemyBases);
+        console.log("SeeEnemyRespawn " + seeEnemyRespawn);
+        console.log("PointsPerKill " + form.generalSettings.pointsPerKill);
 
-
-        MasterStubService.createEvent(form.eventName,
+        MasterStubService.createEvent(form.gameSettings.name,
             null,
-        form.eventDescription,
-        form.eventAddress,
-        form.eventRules,
-        form.eventRestrictions,
-        form.eventProceedments,
-        form.eventAdditionalInformation,
-        form.eventRegistryStartDate,
-        form.eventRegistryEndDate,
-        form.eventStartDate,
-        form.eventEndDate,
-        form.initialPerkPoints,
-        form.maxComsysPerFaction,
-        form.maxOperPerComSys,
-        form.respawnDelay,
-        form.minGpsRefreshRate,
-        form.maxGpsRefreshRate,
+        form.gameSettings.description,
+        form.gameSettings.address,
+        form.gameSettings.rules,
+        form.gameSettings.restrictions,
+        form.gameSettings.proceedments,
+        form.gameSettings.additionalInfo,
+        form.dates.regStartDate,
+        form.dates.regEndDate,
+        form.dates.eventStartDate,
+        form.dates.eventEndDate,
+        form.generalSettings.initialPerkPoints,
+        form.generalSettings.maxComsysFaction,
+        form.generalSettings.maxOperatorComsys,
+        form.generalSettings.respawnDelay,
+        form.generalSettings.minGpsRefRate,
+        form.generalSettings.maxGpsRefRate,
         seeEnemyBases,
         seeEnemyRespawn,
-        form.pointsPerKill);
+        form.generalSettings.pointsPerKill);
 
         console.log("Pushed a new event to the server.");
     };
