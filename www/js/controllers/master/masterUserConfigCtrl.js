@@ -7,8 +7,8 @@ app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService
 	$scope.registerMasterInfo = function(submitedForm){
 		//In case is logged is a change data
 		console.log(submitedForm);
-		console.log();
-		if(!submitedForm.$invalid){
+		console.log(submitedForm.$valid);
+		if(submitedForm.$valid){
 			/* Call Stub */
 			
 		}

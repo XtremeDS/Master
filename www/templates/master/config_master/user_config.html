@@ -2,12 +2,12 @@
     <ion-nav-back-button>
     </ion-nav-back-button>
     <ion-nav-buttons side="right">
-        <button class="button" type="submit" ng-click="registerMasterInfo(masterInfo)">
+        <button class="button" type="submit" ng-click="registerMasterInfo(mConfigController.masterRegisterForm)">
             Done
         </button>
     </ion-nav-buttons>
     <ion-content>
-		<form id="masterRegisterForm" name="masterRegisterForm" novalidate ng-submit="registerMasterInfo(masterInfo)">
+		<form id="masterRegisterForm" name="mConfigController.masterRegisterForm" novalidate ng-submit="registerMasterInfo(masterInfo)">
 	        <div class="list">
 	            <div class="item item-divider">
 	                Access Data
