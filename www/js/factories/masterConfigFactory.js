@@ -11,9 +11,11 @@ app.factory('MasterConfig', function(){
 			country:{
 				country:'pt',
 				countryName:'Portugal'
-			}
+			},
+			address:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
 		},
 		association:{
+			logo: "",
 			name:"Airsot",
 			videoLink:"https://www.youtube.com/watch?v=dQw4w9WgXcQ",
 			pageLink:"http://www.google.com",

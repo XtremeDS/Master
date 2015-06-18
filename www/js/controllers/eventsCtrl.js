@@ -1,22 +1,18 @@
 /**
  * Created by joaosilva on 25/05/15.
  */
-app.controller('EventsCtrl', function ($scope, AppService, MasterStubService) {
+app.controller('EventsCtrl', function ($scope, AppService, MasterStubService, EventInfoService) {
     $scope.data = {
         showDelete: false,
         showReorder: false,
         canSwipe: true
     };
 
-    
-
     console.log("inEvent: "+ AppService.getInEvent());
 
     $scope.isLogged = AppService.getIsLogged();
 
     $scope.inEvent = AppService.getInEvent();
-
-    $scope.eventsList = ["Evento de Leiria", "Evento de Lisboa"];
 
     $scope.myGoBack = function() {
         $ionicHistory.goBack();
@@ -73,19 +69,6 @@ app.controller('EventsCtrl', function ($scope, AppService, MasterStubService) {
         });
     };
 
-    $scope.getAllEvents = function(){
-        console.log("Searching for events!");
-        MasterStubService.getAllMasterEvents()
-            .success(function (data) {
-                $scope.items = data.response;
-                console.log($scope.getAllEventsResult);
-            })
-            .error(function (error) {
-                $scope.items = 'Unable to load data: ' + error;
-                console.log($scope.getAllEventsResult);
-            });
-        };
-
     //what to do when editing..
     $scope.edit = function (item) {
         alert('Edit Item: ' + item.id);
@@ -105,20 +88,23 @@ app.controller('EventsCtrl', function ($scope, AppService, MasterStubService) {
     };
 
     // Reading the events from the server and displaying them on the interface
-    var allEvents;
-    MasterStubService.getAllMasterEvents()
-        .success(function (data) {
-            allEvents = data.list;
-            console.log("SUCCESS in retrieving events from server!");
-            //console.log(allEvents[0]['name']);
+    function retrieveEvents(){
+        var allEvents;
+        MasterStubService.getAllMasterEvents()
+            .success(function (data) {
+                allEvents = data.list;
+                console.log("SUCCESS in retrieving events from server!");
+                //console.log(allEvents[0]['name']);
 
-            $scope.items = ([]);
-            for (i = 0; i < allEvents.length; i++) { 
-                $scope.items.push({id: allEvents[i]['id'], name: allEvents[i]['name'], description: allEvents[i]['description_briefing']});
-                //console.log($scope.items);
-            }
-        })
-        .error(function (error) {
-            console.log('Unable to retrieve events from server:' + error.message);
-    });
+                $scope.items = ([]);
+                for (i = 0; i < allEvents.length; i++) { 
+                    $scope.items.push({id: allEvents[i]['id'], name: allEvents[i]['name'], description: allEvents[i]['description_briefing']});
+                    //console.log($scope.items);
+                }
+            })
+            .error(function (error) {
+                console.log('Unable to retrieve events from server:' + error.message);
+        });
+    }
+    retrieveEvents();
 });

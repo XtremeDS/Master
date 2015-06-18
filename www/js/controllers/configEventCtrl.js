@@ -1,4 +1,4 @@
-app.controller('ConfigEventCtrl', function ($scope, EventConfig, MasterStubService) {
+app.controller('ConfigEventCtrl', function ($scope, EventConfig, MasterStubService, EventInfoService) {
 
     $scope.eventInfo = EventConfig;
     $scope.stubService = MasterStubService;
@@ -79,9 +79,14 @@ app.controller('ConfigEventCtrl', function ($scope, EventConfig, MasterStubServi
         form.generalSettings.maxGpsRefRate,
         seeEnemyBases,
         seeEnemyRespawn,
-        form.generalSettings.pointsPerKill);
-
-        console.log("Pushed a new event to the server.");
+        form.generalSettings.pointsPerKill)
+        .success(function (data) {
+            EventInfoService.setEventId(data.response);
+            console.log("SUCCESS in creating event with ID " + EventInfoService.getEventId());
+        })
+        .error(function (error) {
+            console.log('Unable to create event on server:' + error.message);
+        });
     };
 
     //what to do when deleting
