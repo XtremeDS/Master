@@ -1,18 +1,19 @@
 <ion-modal-view>
     <ion-header-bar class="bar-dark">
-        <h1 class="title">New Faction</h1>
+        <h1 class="title">Map Selection</h1>
 
         <div class="buttons">
-            <button class="button button-clear" ng-click="closeCreateFaction()">Close</button>
+            <button class="button button-clear" ng-click="closeMapSelection()">Close</button>
         </div>
     </ion-header-bar>
     <ion-content>
-        <form name="factionForm" ng-submit="addNewFaction(factionForm)" novalidate>
+        <form name="mapSelectionForm" novalidate ng-submit="selectMap(mapSelectionForm)">
             <div class="list">
 
+                <!--
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Faction Unique Name</span>
-                    <input type="text" placeholder="Faction Unique Name" name="factionName" ng-model="factionName" required ng-minlength="10" ng-maxlength="100">
+                    <input type="" placeholder="Faction Unique Name" name="factionName" ng-model="factionName" required ng-minlength="10" ng-maxlength="100">
                     <p ng-show="factionForm.factionName.$invalid && !factionForm.factionName.$pristine" class="help-block">Faction Name is Required </p>
                     <p ng-show="factionForm.factionName.$error.minlength" class="help-block">Faction Name is too short.</p>
                     <p ng-show="factionForm.factionName.$error.maxlength" class="help-block">Faction Name is too long.</p>
@@ -25,9 +26,10 @@
                     <p ng-show="factionForm.factionPIN.$error.minlength" class="help-block">PIN is too short.</p>
                     <p ng-show="factionForm.factionPIN.$error.maxlength" class="help-block">PIN is too long.</p>
                 </label>
+                -->
 
-                    <ul class="list">
-                        <ion-item ng-repeat="location in locations">
+               <ul class="list">
+                        <ion-item ng-repeat="map in maps">
                             <li class="item item-input-wrapper item-toggle">
                                 {{location.name}}
                                 <label class="toggle toggle-assertive">
@@ -38,10 +40,10 @@
                                     </div>
                                 </label>
                             </li>
-                        </ion-item>
-                    </ul>
+                </ion-item>
+               </ul>
             </div>
-        <button class="button button-block button-dark" type="submit" ng-disabled="factionForm.$invalid">Save</button>
+        <button class="button button-block button-dark" type="submit" ng-disabled="mapSelectionForm.$invalid">Confirm Selection</button>
      </form>
     </ion-content>
 </ion-modal-view>

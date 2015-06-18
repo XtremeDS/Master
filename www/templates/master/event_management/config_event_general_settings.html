@@ -204,19 +204,6 @@
                        class="help-block">Points Per Kill Is Required</p>
                 </label>
 
-                <!--
-                <label class="item item-toggle">
-                    <div class="input-label">ComSys Bases Visible</div>
-                    <label class="toggle">
-                        <input type="checkbox" ng-model="event.comSysBasesVisible">
-
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </label>
-                -->
-
                 <label ng-repeat="checkbox in checkboxes" class="item item-toggle">
                     <div class="input-label">{{checkbox.text}}</div>
                     <label class="toggle">
@@ -227,6 +214,9 @@
                         </div>
                     </label>
                 </label>
+
+                <button class="button button-dark" ng-click="openMapSelectionWindow(eventInfo)"
+                        ng-disabled="eventSettingsForm.$invalid">Set Event Map</button>
             </div>
 
             <button class="button button-block button-dark" type="submit" ng-click="saveEventGeneralSettings(eventInfo)"
