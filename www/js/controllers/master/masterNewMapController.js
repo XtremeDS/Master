@@ -1,4 +1,5 @@
 app.controller('ZoneCtrl', function ($scope, Map, CoordinatesConverter, CommonStubService, MasterStubService, $controller, $q, $ionicPopup, $rootScope, $ionicModal) {
+	
 	$scope.login = function (username, password) {
 		MasterStubService.login(username, password)
 		.success(function (data) {
@@ -49,6 +50,7 @@ app.controller('ZoneCtrl', function ($scope, Map, CoordinatesConverter, CommonSt
 		$scope.zoneTypeInEdition.id = selectedZoneType;
 	};
 	$scope.getZoneCoordinates = function (selectedZone) {
+		console.log(selectedZone);
 		$scope.selectedZone = selectedZone;
 		//TODO: refresh controls
 		if ($scope.map.map.hasLayer($scope.currentLayer)) {
