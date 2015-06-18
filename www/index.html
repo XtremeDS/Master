@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/ionic/release/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/ionic.app.css" rel="stylesheet">
     <link href="lib/ionic-datepicker/dist/style.css" rel="stylesheet">
@@ -25,13 +25,13 @@
     <link href="lib/socom-maps.compass/socom-compass.css" rel="stylesheet"/>
     <link href="lib/socom-maps.view-mode/socom-maps-viewmode.css" rel="stylesheet"/>
     <link href="lib/socom-maps/leaflet-search/leaflet-search.min.css" rel="stylesheet"/>
-
+	
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
         <link href="css/ionic.app.css" rel="stylesheet">
         -->
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic/release/js/ionic.bundle.js"></script>
     <script src="lib/ng-flags/src/directives/ng-flags.js"></script>
     <script src="cordova.js"></script>
 
@@ -47,26 +47,18 @@
     <script src="js/controllers/eventsCtrl.js"></script>
     <script src="js/controllers/liveCtrl.js"></script>
 
-
-    <!--<script src="js/controllers/comsys/squadManagCtrl.js"></script>
-        <script src="js/controllers/eventDetailsCtrl.js"></script>
-        <script src="js/controllers/operator/perksCtrl.js"></script>
-        <script src="js/controllers/operator/profileCtrl.js"></script>
-        <script src="js/controllers/operator/squadCtrl.js"></script>
-        <script src="js/controllers/comsys/tacticalActionsCtrl.js"></script>
-        -->
-
     <!-- Master Config Controllers -->
     <script src="js/controllers/master/configMasterCtrl.js"></script>
     <script src="js/controllers/master/masterUserConfigCtrl.js"></script>
     <script src="js/controllers/master/masterMapsController.js"></script>
+	<script src="js/controllers/master/zoneTypeController.js"></script>
     <script src="js/controllers/master/masterNewMapController.js"></script>
-
+	
     <!-- your app's services -->
     <script src="js/services/services.js"></script>
-    <script src="js/services/masterInfoService.js"></script>
+    <!--<script src="js/services/masterInfoService.js"></script>
     <script src="js/services/stub/master-stub-service.js"></script>
-    <script src="js/services/eventInfoService.js"></script>
+    <script src="js/services/eventInfoService.js"></script>-->
 
     <!-- Master Factories -->
     <script src="js/factories/eventConfigFactory.js"></script>
@@ -76,7 +68,7 @@
     <!-- your app's CDN stub paths -->
     <script src="https://rawgit.com/skmll/socom_bo_operator/master/www/js/services/common-stub-service.js"></script>
     <!--<script src="https://rawgit.com/skmll/socom_bo_operator/master/www/js/services/operator-stub-service.js"></script>-->
-    <!-- <script src="https://rawgit.com/skmll/socom_bo_operator/master/www/js/services/master-stub-service.js"></script> -->
+    <script src="https://rawgit.com/skmll/socom_bo_operator/master/www/js/services/master-stub-service.js"></script>
 
 
 

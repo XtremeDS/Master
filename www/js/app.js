@@ -22,6 +22,7 @@ app.run(function ($ionicPlatform) {
         }
     });
 });
+
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 
@@ -51,76 +52,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-
-        /*.state('app.events', {
-            url: "/events",
-            views: {
-                'menuContent': {
-                    templateUrl: "templates/operator/events.html",
-                    controller: 'EventsCtrl'
-                }
-            }
-        })
-
-        .state('app.eventDetails', {
-            url: "/eventDetails",
-            views: {
-                'menuContent': {
-                    templateUrl: "templates/operator/eventDetails.html",
-                    controller: 'EventsCtrl'
-                }
-            }
-        })
-
-        .state('app.profile', {
-            url: "/profile",
-            views: {
-                'menuContent': {
-                    templateUrl: "templates/operator/profile.html",
-                    controller: 'ProfileCtrl'
-                }
-            }
-        })
-
-        .state('app.squad', {
-            url: "/squad",
-            views: {
-                'menuContent': {
-                    templateUrl: "templates/operator/squad.html",
-                    controller: 'SquadCtrl'
-                }
-            }
-        })
-
-        .state('app.squadManag', {
-            url: "/squadManag",
-            views: {
-                'menuContent': {
-                    templateUrl: "templates/comsys/squadManagement.html",
-                    controller: 'SquadManagCtrl'
-                }
-            }
-        })
-
-        .state('app.perks', {
-            url: "/perks",
-            views: {
-                'menuContent': {
-                    templateUrl: "templates/operator/perks.html",
-                    controller: 'PerksCtrl'
-                }
-            }
-        })
-
-        .state('app.settings', {
-            url: "/settings",
-            views: {
-                'menuContent': {
-                    templateUrl: "templates/settings.html",
-                    controller: 'SettingsCtrl'
-                }
-            }
-        })*/
 
         .state('app.masterconfig', {
             url: "/masterconfig",

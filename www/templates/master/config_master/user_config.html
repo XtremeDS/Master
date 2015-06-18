@@ -1,13 +1,13 @@
-<ion-view view-title="Personal Config" ng-controller="MasterUserConfigCtrl as mConfigController">
+<ion-view view-title="Personal Config" ng-controller="MasterUserConfigCtrl as mConfCtrl">
     <ion-nav-back-button>
     </ion-nav-back-button>
     <ion-nav-buttons side="right">
-        <button class="button" type="submit" ng-click="registerMasterInfo(mConfigController.masterRegisterForm)">
+        <button class="button" ng-disabled="mConfCtrl.masterRegisterForm.$invalid" ng-click="registerMasterInfo(mConfCtrl.masterRegisterForm)">
             Done
         </button>
     </ion-nav-buttons>
     <ion-content>
-		<form id="masterRegisterForm" name="mConfigController.masterRegisterForm" novalidate ng-submit="registerMasterInfo(masterInfo)">
+		<form id="masterRegisterForm" name="mConfCtrl.masterRegisterForm" novalidate ng-submit="registerMasterInfo(masterInfo)">
 	        <div class="list">
 	            <div class="item item-divider">
 	                Access Data
@@ -72,7 +72,7 @@
 	            </div>
 	            <label class="item item-input item-floating-label">
 	                <span class="input-label">Name</span>
-	                <input type="text" placeholder="Name" ng-model="masterInfo.association.name" required>
+	                <input type="text" placeholder="Name" ng-model="masterInfo.association.name" pattern="[a-zA-Z0-9]{3,10}"  required>
 	            </label>
 	            
 				<label class="item item-input item-floating-label">

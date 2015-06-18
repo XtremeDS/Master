@@ -4,10 +4,21 @@ app.controller('MasterUserConfigCtrl', function ($scope, $ionicModal, AppService
 	$scope.isFormValid = false;
 	$scope.countries = Countries;
 	
+	$scope.isMFormInvalid = function (submitedForm){
+		return submitedForm.$invalid;
+	};
+	
 	$scope.registerMasterInfo = function(submitedForm){
 		//In case is logged is a change data
 		var result;
 		var login;
+		
+		console.log(submitedForm);
+		return;
+		
+		if(submitedForm.$valid){
+			
+		}
 
 		MasterStubService.loginCheckMaster()
 		.success(function (data) {
