@@ -1,4 +1,4 @@
-app.controller('FactionsCtrl', function ($scope, $ionicModal, MasterStubService) {
+app.controller('FactionsCtrl', function ($scope, $ionicModal, MasterStubService, EventInfoService) {
     $ionicModal.fromTemplateUrl('templates/master/faction_management/config_faction.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -14,49 +14,47 @@ app.controller('FactionsCtrl', function ($scope, $ionicModal, MasterStubService)
         $scope.modalCreateFaction.hide();
     };
 
-    var allEvents;
-    MasterStubService.getAllMasterEvents()
-        .success(function (data) {
-            allEvents = data.list;
-            console.log("SUCCESS in retrieving latest event from server!");
-            //console.log(allEvents[0]['name']);
+    // A function that refreshes the list of Factions
+    function retrieveFactions () {
+        var allFactions;
+        MasterStubService.getAllFactions(EventInfoService.getEventId())
+            .success(function (data) {
+                allFactions = data.list;
+                console.log("SUCCESS in retrieving factions from event " + EventInfoService.getEventId());
+                console.log(data.list);
 
-            $scope.eventID = allEvents[allEvents.length-1]['id'];
-            console.log("Event ID of the latest created event is " + $scope.eventID);
-            console.log("Adding factions to event with ID " + $scope.eventID);
-        })
-        .error(function (error) {
-            console.log('Unable to retrieve latest event from server:' + error.message);
-    });
+                $scope.factions = ([]);
+                for (i = 0; i < allFactions.length; i++) { 
+                    $scope.factions.push({name: allFactions[i]['name'], pin: allFactions[i]['pin']});
+                }
 
-    var allFactions;
-    MasterStubService.getAllFactions($scope.eventID)
-        .success(function (data) {
-            allFactions = data.list;
-            console.log("SUCCESS in retrieving factions from server!");
+            })
+            .error(function (error) {
+                console.log('Unable to retrieve factions from server:' + error.message);
+        });
+    }
+    retrieveFactions();
 
-            $scope.factions = ([]);
-            for (i = 0; i < allFactions.length; i++) { 
-                $scope.factions.push({name: allFactions[i]['name'], pin: allFactions[i]['pin']});
-                console.log($scope.factions);
-            }
-        })
-        .error(function (error) {
-            console.log('Unable to retrieve factions from server:' + error.message);
-    });
-
+    // adding new factions to the event
     $scope.addNewFaction = function (form) {
-        console.log("Creating a new faction...");
+        console.log("Creating a new faction on event " + EventInfoService.getEventId());
+        console.log("Adding a new faction with the pin" + form.factionPIN["$viewValue"] + "and name " + form.factionName["$viewValue"]);
 
         MasterStubService.createFaction(
-            $scope.eventID,
-            form.factionName,
-            form.factionPIN);
-
-        console.log("Added a new faction to the event" + $scope.eventID);
+            EventInfoService.getEventId(),
+            form.factionName["$viewValue"],
+            Number(form.factionPIN["$viewValue"]))
+            .success(function (data) {
+                EventInfoService.addFactionId(data.response);
+                console.log("SUCCESS in adding a faction with the ID " + EventInfoService.getFactionIds()[EventInfoService.getFactionIds().length-1]['factionId'] + " to the event " + EventInfoService.getEventId());
+                retrieveFactions();
+            })
+            .error(function (error) {
+                console.log('Unable to create a faction on the event ' + EventInfoService.getEventId());
+        });
     };
 
-    //what to do when deleting
+    //what to do when deleting a faction
     $scope.onItemDelete = function (itemIndex) {
         factionToDelete = $scope.factions[itemIndex].pin;
         MasterStubService.deleteFaction($scope.eventID, factionToDelete);
