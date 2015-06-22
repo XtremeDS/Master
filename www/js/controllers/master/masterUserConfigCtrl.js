@@ -107,7 +107,7 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 		MasterStubService.getMasterPersonalConfig()
 			.success(function (data) {
 			if(data.response != 0 ){
-				$scope.masterInfo.accessData.email = data.list['nickname'];
+				$scope.masterInfo.personalData.name = data.list['nickname'];
 				//$scope.masterInfo.accessData.name = data.list[''];
 				$scope.masterInfo.personalData.phone = data.list['phone'];
 				$scope.masterInfo.personalData.address = data.list['address'];
