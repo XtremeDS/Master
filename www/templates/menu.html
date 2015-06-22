@@ -43,6 +43,9 @@
                         Profile
                     </i>
                 </ion-item>
+
+                <!-- NOT NECESSARY -->
+                <!--
                 <ion-item item-icon-left nav-clear menu-close ng-click="openJoinSquadModal()" ng-if="appType==0 && isLogged==1 && inSquad==0 && inEvent==0">
                     <i class="icon ion-ios-people">
                         Join/Create Squad
@@ -58,28 +61,11 @@
                         Perks
                     </i>
                 </ion-item>
-                <ion-item item-icon-left nav-clear menu-close href="#/app/events" ng-if="isLogged==1 && inEvent==1">
-                    <i class="icon ion-calendar">
-                        Event
-                    </i>
-                </ion-item>
+                -->
+
                 <ion-item item-icon-left nav-clear menu-close href="#/app/settings">
                     <i class="icon ion-gear-a">
                         Settings
-                    </i>
-                </ion-item>
-
-                <!-- COMSYS -->
-                <ion-item item-icon-left nav-clear menu-close href="#app/squadManag" ng-if="appType==1">
-                    <i class="icon ion-ios-people">
-                        Squad Management
-                    </i>
-                </ion-item>
-
-                <!-- COMSYS -->
-                <ion-item item-icon-left nav-clear menu-close href="#app/tacticalActions" ng-if="appType==1">
-                    <i class="icon ion-pinpoint">
-                        Tactical Actions Management
                     </i>
                 </ion-item>
 				
