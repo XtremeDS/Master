@@ -57,9 +57,9 @@ app.controller('FactionsCtrl', function ($scope, $ionicModal, MasterStubService,
     //what to do when deleting a faction
     $scope.onItemDelete = function (itemIndex) {
         factionToDelete = $scope.factions[itemIndex].pin;
-        MasterStubService.deleteFaction($scope.eventID, factionToDelete);
-        console.log("Successfully deleted faction with the PIN: " + factionToDelete + " from event " + $scope.eventID);
-        $scope.items.splice($scope.factions.indexOf(itemIndex), 1);
+        MasterStubService.deleteFaction(EventInfoService.getEventId(), factionToDelete);
+        console.log("Successfully deleted faction with the PIN: " + factionToDelete + " from event " + EventInfoService.getEventId());
+        $scope.factions.splice($scope.factions.indexOf(itemIndex), 1);
     };
 
     //Cleanup the modal when we're done with it!

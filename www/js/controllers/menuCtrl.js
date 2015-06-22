@@ -22,12 +22,8 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
 
     // Form data for the login modal
     $scope.loginData = {
-        username:{
-
-        },
-        password:{
-
-        }
+        username:"",
+        password:""
     };
 
     // Form data for the sign up modal
