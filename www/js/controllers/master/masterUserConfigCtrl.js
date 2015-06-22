@@ -24,8 +24,12 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 		$ionicLoading.hide();
 		$scope.showFailLoginAlert();
 	});*/
-	
-	
+	$scope.isLogged = AppService.getIsLogged();
+	console.log($scope.isLogged);
+	if($scope.isLogged){
+		loadMasterData();
+	}
+
 	/* Fail to get MasterInfData */
     // An alert dialog
     $scope.showFailLoginAlert = function() {
@@ -59,7 +63,7 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 			
 		}
 
-		if(login == 0){
+		if(!$scope.isLogged){
 			MasterStubService.createMaster(submitedForm.accessData.email, submitedForm.accessData.password,"teste",null,
 			submitedForm.personalData.phone, "Rua da estrada", submitedForm.personalData.zipCode, submitedForm.personalData.country.countryName, submitedForm.association.description, 
 			submitedForm.association.pageLink, submitedForm.association.videoLink)
@@ -98,7 +102,33 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 		scope: $scope,
 		animation: 'slide-in-up'
 	});
-	
+	/*
+	function loadMasterData () {
+		MasterStubService.getMasterPersonalConfig()
+			.success(function (data) {
+			if(data.response != 0 ){
+				$scope.masterInfo.accessData.email = data.list['nickname'];
+				//$scope.masterInfo.accessData.name = data.list[''];
+				$scope.masterInfo.personalData.phone = data.list['phone'];
+				$scope.masterInfo.personalData.address = data.list['address'];
+				$scope.masterInfo.personalData.zipCode = data.list['zipcode'];
+				$scope.masterInfo.personalData.country = data.list['country'];
+				//$scope.masterInfo.association.name = data.list[''];
+				console.log(data.list['association_link']);
+				$scope.masterInfo.association.pageLink = data.list['association_link'];
+				$scope.masterInfo.association.videoLink = data.list['association_link_promo'];
+				$scope.masterInfo.association.description = data.list['association_description'];
+
+
+			}
+
+		})
+			.error(function (error) {
+			$scope.getMasterPersonalConfigResult = 'Unable to load data: ' + error;
+		});
+	};
+*/
+
 	// Open choose country modal
 	$scope.newTask = function() {
 		$scope.countryModal.show();
