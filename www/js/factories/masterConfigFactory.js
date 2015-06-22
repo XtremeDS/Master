@@ -1,24 +1,24 @@
 app.factory('MasterConfig', function(){
 	return {
 		accessData:{
-			email: "2140139@myipleiria.pt",
-			password: "123456789"
+			email: null,
+			password: null
 		},
 		personalData:{
-			name:"Emanuel Coelho",
-			phone:"123654789",
-			zipCode:"2400",
+			name:null,
+			phone:null,
+			zipCode:null,
 			country:{
-				country:'pt',
-				countryName:'Portugal'
+				country:null,
+				countryName:null
 			},
-			address:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+			address:null
 		},
 		association:{
-			logo: "",
-			videoLink:"https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-			pageLink:"http://www.google.com",
-			description:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. "
+			logo: null,
+			videoLink:null,
+			pageLink:null,
+			description:null
 		}
 	};
 });

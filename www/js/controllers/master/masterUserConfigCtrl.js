@@ -102,7 +102,7 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 		scope: $scope,
 		animation: 'slide-in-up'
 	});
-	/*
+	
 	function loadMasterData () {
 		MasterStubService.getMasterPersonalConfig()
 			.success(function (data) {
@@ -127,7 +127,7 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 			$scope.getMasterPersonalConfigResult = 'Unable to load data: ' + error;
 		});
 	};
-*/
+
 
 	// Open choose country modal
 	$scope.newTask = function() {
