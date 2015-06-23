@@ -6,7 +6,7 @@
                     show-reorder="data.showReorder"
                     can-swipe="data.canSwipe">
                 <ion-item ng-repeat="item in items"
-                          class="item-thumbnail-left">
+                          class="item-thumbnail-left item-icon-right">
 
                     <img ng-src="img/no_logo_selected.png">
 
@@ -14,9 +14,7 @@
 
                     <p>{{item.description}}</p>
 
-                    <h3>In progress: 
-                        <i class="icon ion-close-circled" style="color: #c3000a"></i>
-                    </h3>
+                    <i class="icon ion-record" style="color: #c3000a"></i>
 
                     <ion-option-button class="button-info"
                                        ng-click="edit(item)">
