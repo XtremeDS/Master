@@ -9,6 +9,7 @@
                     show-reorder="data.showReorder" can-swipe="data.canSwipe">
 	  		<ion-item ng-repeat="item in maps" class="item item-icon-right">
 		    <h2>{{item.description}}</h2>
+		    <p>{{zoneTypes[item.zone_id]['name']}}</p>
 		    
 			<ion-option-button class="button-info" ng-click="edit(item)">
 		      Edit

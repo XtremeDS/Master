@@ -1,4 +1,7 @@
 <ion-view view-title="Factions List" ng-controller="FactionsCtrl">
+    <ion-nav-buttons side="right">
+        <button class="button icon button-icon ion-plus-round" ng-click="openCreateFaction()"></button>
+    </ion-nav-buttons>
     <ion-content>
         <ion-scroll zooming="true" direction="xy" style="width: 100%; height: 100%">
             <ion-list
@@ -35,7 +38,7 @@
             </div>
            <h1 class="title"></h1>
             <div class="buttons">
-                <button class="button" ng-click="openCreateFaction()">New Faction</button>
+                
                 <button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
                     Reorder
                 </button>

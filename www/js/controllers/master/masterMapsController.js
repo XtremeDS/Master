@@ -22,9 +22,20 @@ app.controller('MasterMapsCtrl', function ($scope, MasterZones, $state, $ionicHi
 		console.log(data);
 		if (data.response == 1) {
 			$scope.maps = data.list;
+			console.log(data.list);
 		}
 	}).error(function (error) {
 		$scope.getAllMasterZonesResult = 'Unable to load zones from Master: ' + error;
+	});
+
+	MasterStubService.getAllZoneTypes()
+	.success(function (data) {
+		if (data.response === 1) {
+			$scope.zoneTypes = data.list;
+			console.log(data.list);
+		}
+	}).error(function (error) {
+		$scope.error = 'Unable to load data: ' + error;
 	});
 	
 	/* Stucture (So Far) */
