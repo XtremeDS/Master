@@ -5,20 +5,25 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
     // Set appType - 0:Operator 1:ComSys 2:Master
     $scope.appType = AppService.getAppType();
     
-    // Set userLogged - 0:Not logged 1:Logged
-    $scope.isLogged = AppService.getIsLogged();
-
-    // Set inSquad - 0:Not in squad 1:In squad
-    $scope.squadID = AppService.getSquadID();
-
-    // Set specialisation - 0:without specialisation >1:with specialisation
-    $scope.specialisation = AppService.getSpecialisation();
+    MasterStubService.loginCheckMaster()
+        .success(function (data) {
+            // Set userLogged - 0:Not logged 1:Logged
+            if (data.response != 0) {
+                $scope.isLogged = 1;
+            } else {
+                // CHANGE THIS TO "0" LATER
+                $scope.isLogged = 0;
+            }
+            console.log("isLogged: " + $scope.isLogged);
+            $ionicLoading.hide();
+        }).error(function (error) {
+            console.log("Unable to check login: " + error);
+            $ionicLoading.hide();
+        });
 
     $scope.inEvent = AppService.getInEvent();
 
     $scope.eventID = AppService.getEventID();
-
-    $scope.factionPin = AppService.getFactionPin();
 
     // Form data for the login modal
     $scope.loginData = {
@@ -48,12 +53,6 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
         }
     };
 
-    // Form data for the create squad modal
-    $scope.createSquadData = {};
-
-    // Form data for the join squad modal
-    $scope.joinSquadData = {};
-
     // Form Data for Master modal
     $scope.masterData = {
         personalData:{
@@ -73,8 +72,6 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
 
         }
     };
-
-    $scope.masterExists = 0;
 
     // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -117,8 +114,20 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
                         });
                     }else {
                         // Change the variable isLogged to is logged state
-                        AppService.setIsLogged(1);
-                        $scope.isLogged = AppService.getIsLogged();
+                        MasterStubService.loginCheckMaster()
+                        .success(function (data) {
+                            // Set userLogged - 0:Not logged 1:Logged
+                            if (data.response != 0) {
+                                $scope.isLogged = 1;
+                            } else {
+                                $scope.isLogged = 0;
+                            }
+                            console.log("isLogged: " + $scope.isLogged);
+                            $ionicLoading.hide();
+                        }).error(function (error) {
+                            console.log("Unable to check login: " + error);
+                            $ionicLoading.hide();
+                        });
 
                         // Closes the modal view
                         $scope.closeLoginModal();
@@ -179,8 +188,20 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
                         });
                     }else {
                         // Change the variable isLogged to is logged state
-                        AppService.setIsLogged(1);
-                        $scope.isLogged = AppService.getIsLogged();
+                        MasterStubService.loginCheckMaster()
+                        .success(function (data) {
+                            // Set userLogged - 0:Not logged 1:Logged
+                            if (data.response != 0) {
+                                $scope.isLogged = 1;
+                            } else {
+                                $scope.isLogged = 0;
+                            }
+                            console.log("isLogged: " + $scope.isLogged);
+                            $ionicLoading.hide();
+                        }).error(function (error) {
+                            console.log("Unable to check login: " + error);
+                            $ionicLoading.hide();
+                        });
 
                         // Closes the modal view
                         $scope.closeSignUpModal();

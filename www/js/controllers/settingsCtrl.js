@@ -5,8 +5,24 @@ app.controller('SettingsCtrl', function ($scope, $ionicLoading, $timeout, AppSer
     // Set appType - 0:Operator 1:ComSys 2:Master
     $scope.appType = AppService.getAppType();
 
-    // Set userLogged - 0:Not logged 1:Logged
-    $scope.isLogged = AppService.getIsLogged();
+    // UNCOMMENT LATER
+    /*MasterStubService.loginCheckMaster()
+        .success(function (data) {
+            // Set userLogged - 0:Not logged 1:Logged
+            if (data.response != 0) {
+                $scope.isLogged = 1;
+            } else {
+                $scope.isLogged = 0;
+            }
+            console.log("isLogged: " + $scope.isLogged);
+            $ionicLoading.hide();
+        }).error(function (error) {
+            console.log("Unable to check login: " + error);
+            $ionicLoading.hide();
+        });*/
+
+    // COMMENT LATER
+    $scope.isLogged = 1;
 
     $scope.saveIPs = function () {
         $scope.loadingSaveIPs = $ionicLoading.show({

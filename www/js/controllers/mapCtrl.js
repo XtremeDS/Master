@@ -5,17 +5,25 @@ app.controller('MapCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopup
     // Set appType - 0:Operator 1:ComSys 2:Master
     $scope.appType = AppService.getAppType();
 
-    // Set userLogged - 0:Not logged 1:Logged
-    $scope.isLogged = AppService.getIsLogged();
 
-    // Set squadID - 0:Not in squad 1:In squad
-    $scope.squadID = AppService.getSquadID();
+    // UNCOMMENT LATER
+    /*MasterStubService.loginCheckMaster()
+        .success(function (data) {
+            // Set userLogged - 0:Not logged 1:Logged
+            if (data.response != 0) {
+                $scope.isLogged = 1;
+            } else {
+                $scope.isLogged = 0;
+            }
+            console.log("isLogged: " + $scope.isLogged);
+            $ionicLoading.hide();
+        }).error(function (error) {
+            console.log("Unable to check login: " + error);
+            $ionicLoading.hide();
+        });*/
 
-    // Set squadLider - 0:Not in squad 1:In squad
-    $scope.squadLider = AppService.getIsSquadLider();
-
-    // Set specialisation
-    $scope.specialisation = AppService.getSpecialisation();
+    // COMMENT LATER
+    $scope.isLogged = 1;
 
     // Set eventReady
     $scope.eventReady = AppService.getEventReady();

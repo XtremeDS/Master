@@ -24,7 +24,26 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 		$ionicLoading.hide();
 		$scope.showFailLoginAlert();
 	});*/
-	$scope.isLogged = AppService.getIsLogged();
+
+	// UNCOMMENT LATER
+    /*MasterStubService.loginCheckMaster()
+        .success(function (data) {
+            // Set userLogged - 0:Not logged 1:Logged
+            if (data.response != 0) {
+                $scope.isLogged = 1;
+            } else {
+                $scope.isLogged = 0;
+            }
+            console.log("isLogged: " + $scope.isLogged);
+            $ionicLoading.hide();
+        }).error(function (error) {
+            console.log("Unable to check login: " + error);
+            $ionicLoading.hide();
+        });*/
+
+    // COMMENT LATER
+    $scope.isLogged = 1;
+
 	console.log($scope.isLogged);
 	if($scope.isLogged){
 		loadMasterData();

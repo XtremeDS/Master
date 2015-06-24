@@ -1,7 +1,7 @@
 app.controller('MasterMapsCtrl', function ($scope, MasterZones, $state, $ionicHistory, $ionicPopup, $ionicLoading, $ionicModal, AppService, MasterStubService, MasterConfig, Countries) {
 	console.log('Here at Zones Controller');
 	
-	$scope.maps = MasterZones;
+	//$scope.maps = MasterZones;
 	
 	/* Loading Zones */
 	/*$scope.showLoadding = $ionicLoading.show({
@@ -17,6 +17,16 @@ app.controller('MasterMapsCtrl', function ($scope, MasterZones, $state, $ionicHi
 	/* 2 - Cycl it */
 	/* 3 - Push new Item into Factory */
 
+	MasterStubService.getAllZoneTypes()
+	.success(function (data) {
+		if (data.response === 1) {
+			$scope.zoneTypes = data.list;
+			console.log(data.list);
+		}
+	}).error(function (error) {
+		$scope.error = 'Unable to load data: ' + error;
+	});
+
 	MasterStubService.getAllMasterZones()
 	.success(function (data) {
 		console.log(data);
@@ -28,15 +38,7 @@ app.controller('MasterMapsCtrl', function ($scope, MasterZones, $state, $ionicHi
 		$scope.getAllMasterZonesResult = 'Unable to load zones from Master: ' + error;
 	});
 
-	MasterStubService.getAllZoneTypes()
-	.success(function (data) {
-		if (data.response === 1) {
-			$scope.zoneTypes = data.list;
-			console.log(data.list);
-		}
-	}).error(function (error) {
-		$scope.error = 'Unable to load data: ' + error;
-	});
+
 	
 	/* Stucture (So Far) */
 	/**
