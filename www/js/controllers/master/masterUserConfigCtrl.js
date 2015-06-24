@@ -6,27 +6,12 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 	
 	/* FOR NOW I HAVE TO USE DUMMY DATA */
 	
-    /*$scope.showLoadding = $ionicLoading.show({
+    $scope.showLoadding = $ionicLoading.show({
          template: '<ion-spinner icon="android"></ion-spinner>'
     });
-	
-	MasterStubService.loginCheckMaster().success(function (data) {
-		console.log(data);
-		login = data.response;
-		
-		/* Assign Recieved Data To MasterFactory */
-		/* TODO --- CALL FUNCTION HERE TO ASSIGN *
-		
-		$ionicLoading.hide();
-	}).error(function (error) {
-		$scope.loginCheckResult = 'Unable to load data: ' + error;
-		console.log(error);
-		$ionicLoading.hide();
-		$scope.showFailLoginAlert();
-	});*/
 
 	// UNCOMMENT LATER
-    /*MasterStubService.loginCheckMaster()
+    MasterStubService.loginCheckMaster()
         .success(function (data) {
             // Set userLogged - 0:Not logged 1:Logged
             if (data.response != 0) {
@@ -37,9 +22,10 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
             console.log("isLogged: " + $scope.isLogged);
             $ionicLoading.hide();
         }).error(function (error) {
+			/* TODO - Change this to Warning */
             console.log("Unable to check login: " + error);
             $ionicLoading.hide();
-        });*/
+        });
 
     // COMMENT LATER
     $scope.isLogged = 1;
@@ -83,8 +69,8 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 		}
 
 		if(!$scope.isLogged){
-			MasterStubService.createMaster(submitedForm.accessData.email, submitedForm.accessData.password,"teste",null,
-			submitedForm.personalData.phone, "Rua da estrada", submitedForm.personalData.zipCode, submitedForm.personalData.country.countryName, submitedForm.association.description, 
+			MasterStubService.createMaster(submitedForm.accessData.email, submitedForm.accessData.password, $scope.masterInfo.personalData.name,null,
+			submitedForm.personalData.phone, submitedForm.personalData.address, submitedForm.personalData.zipCode, submitedForm.personalData.country.countryName, submitedForm.association.description, 
 			submitedForm.association.pageLink, submitedForm.association.videoLink)
 			.success(function (data) {
 				if(data.response == 0){
@@ -95,21 +81,26 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 				}
 			})
 			.error(function (error) {
+				/* TODO - Change this to Warning */
 				$scope.createMasterResult = 'Unable to load data: ' + error;
 			});
 		}else{
-			MasterStubService.updateMasterPersonalConfig(0, 2, "teste3", null,
-			submitedForm.personalData.phone, "Rua Alterada", submitedForm.personalData.zipCode, submitedForm.personalData.country,submitedForm.association.description, 
+			//updateMasterPersonalConfig: function (display_grid, coord_format, nickname, logo, 
+				//phone, address, zipcode, country, association_description, association_link, association_link_promo
+			MasterStubService.updateMasterPersonalConfig(0, 2, $scope.masterInfo.personalData.name, null,
+			submitedForm.personalData.phone, submitedForm.personalData.address, submitedForm.personalData.zipCode, submitedForm.personalData.country,submitedForm.association.description, 
 			submitedForm.association.pageLink, submitedForm.association.videoLink)
 			.success(function (data){
 				console.log(data);
 				$scope.updateMasterConfigResult = data.response;
 				if(data == 0){
+					/* TODO - Change this to Warning */
 					Console.log("Error updating");
 				}
 			})
 			.error(function (error) {
-				$scope.updateMasterConfigResult = 'Unable to load data: ' + error;
+				/* TODO - Change this to Warning */
+				//$scope.updateMasterConfigResult = 'Unable to load data: ' + error;
 			});
 		}
 	}
@@ -123,8 +114,7 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 	});
 	
 	function loadMasterData () {
-		MasterStubService.getMasterPersonalConfig()
-			.success(function (data) {
+		MasterStubService.getMasterPersonalConfig().success(function (data) {
 			if(data.response != 0 ){
 				$scope.masterInfo.personalData.name= data.list['nickname'];
 				$scope.masterInfo.personalData.phone = data.list['phone'];
@@ -136,12 +126,11 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 				$scope.masterInfo.association.pageLink = data.list['association_link'];
 				$scope.masterInfo.association.videoLink = data.list['association_link_promo'];
 				$scope.masterInfo.association.description = data.list['association_description'];
-
-
 			}
 
 		})
 			.error(function (error) {
+				/* TODO - Change this to Warning */
 			$scope.getMasterPersonalConfigResult = 'Unable to load data: ' + error;
 		});
 	};
