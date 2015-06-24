@@ -4,9 +4,11 @@ app.controller('MasterMapsCtrl', function ($scope, MasterZones, $state, $ionicHi
 	$scope.maps = MasterZones;
 	
 	/* Loading Zones */
-	$scope.showLoadding = $ionicLoading.show({
+	/*$scope.showLoadding = $ionicLoading.show({
 		template: '<ion-spinner icon="android"></ion-spinner>'
-	});
+	});*/
+
+	
 	
 	/* Load Zones From Server */
 	/* PLEASE ADD THE MasterStubFuntion TO Load ZOnes Here */
@@ -14,6 +16,16 @@ app.controller('MasterMapsCtrl', function ($scope, MasterZones, $state, $ionicHi
 	/* 1 - Load the data from Stub */
 	/* 2 - Cycl it */
 	/* 3 - Push new Item into Factory */
+
+	MasterStubService.getAllMasterZones()
+	.success(function (data) {
+		console.log(data);
+		if (data.response == 1) {
+			$scope.maps = data.list;
+		}
+	}).error(function (error) {
+		$scope.getAllMasterZonesResult = 'Unable to load zones from Master: ' + error;
+	});
 	
 	/* Stucture (So Far) */
 	/**
@@ -22,5 +34,13 @@ app.controller('MasterMapsCtrl', function ($scope, MasterZones, $state, $ionicHi
 			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
 		}
 	**/
+
+	//what to do when deleting
+    $scope.onItemDelete = function (itemIndex) {
+        zoneIdToDelete = $scope.maps[itemIndex].id;
+        //MasterStubService.deleteMasterZone(zoneIdToDelete);
+        console.log("Successfully deleted zone with the ID: " + zoneIdToDelete);
+        $scope.maps.splice($scope.maps.indexOf(itemIndex), 1);
+    };
 	
 });

@@ -78,5 +78,6 @@ app.controller('ZoneTypeCtrl', function ($scope, Map, CoordinatesConverter, Comm
 	
 	$scope.closeModal = function () {
 		$rootScope.$broadcast('zoneTypesModalClosed');
+		$scope.modal.remove();
 	}
 });
