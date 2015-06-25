@@ -18,7 +18,7 @@
         </ion-header-bar>
         <ion-content>
             <ion-list>
-                <ion-item item-icon-left nav-clear menu-close href="#/app/map">
+                <ion-item item-icon-left nav-clear menu-close href="#/app/map" ng-if="isLogged==1">
                     <i class="icon ion-map">
                         Map
                     </i>
@@ -28,55 +28,20 @@
                         Login/Sign Up
                     </i>
                 </ion-item>
-                <ion-item item-icon-left nav-clear menu-close href="#/app/live">
+                <ion-item item-icon-left nav-clear menu-close href="#/app/live" ng-if="isLogged==1">
                     <i class="icon ion-play">
                         Live
                     </i>
                 </ion-item>
-                <ion-item item-icon-left nav-clear menu-close href="#/app/events" ng-controller="EventsCtrl" ng-click="getAllEvents()" ng-if="isLogged==1 && inEvent==0">
+                <ion-item item-icon-left nav-clear menu-close href="#/app/listevents" ng-if="isLogged==1">
                     <i class="icon ion-calendar">
                         Events
                     </i>
                 </ion-item>
-                <ion-item item-icon-left nav-clear menu-close href="#/app/profile" ng-if="isLogged==1">
-                    <i class="icon ion-person">
-                        Profile
-                    </i>
-                </ion-item>
-
-                <!-- NOT NECESSARY -->
-                <!--
-                <ion-item item-icon-left nav-clear menu-close ng-click="openJoinSquadModal()" ng-if="appType==0 && isLogged==1 && inSquad==0 && inEvent==0">
-                    <i class="icon ion-ios-people">
-                        Join/Create Squad
-                    </i>
-                </ion-item>
-                <ion-item item-icon-left nav-clear menu-close href="#/app/squad" ng-if="appType==0 && isLogged==1 && inSquad==1 && inEvent==1">
-                    <i class="icon ion-ios-people">
-                        Squad
-                    </i>
-                </ion-item>
-                <ion-item item-icon-left nav-clear menu-close href="#/app/perks" ng-if="appType==0 && isLogged==1 && inSquad==1">
-                    <i class="icon ion-fork-repo">
-                        Perks
-                    </i>
-                </ion-item>
-                -->
-
-                <ion-item item-icon-left nav-clear menu-close href="#/app/settings">
+                <ion-item item-icon-left nav-clear menu-close href="#/app/masterconfig" ng-if="isLogged==1">
                     <i class="icon ion-gear-a">
                         Settings
                     </i>
-                </ion-item>
-				
-                <!-- Config Master -->
-                <ion-item nav-clear nav-clear menu-close href="#/app/masterconfig" ng-if="appType==2">
-                        Config Master
-                </ion-item>
-
-                <!-- List Event/Tournament -->
-                <ion-item nav-clear menu-close href="#/app/listevents" ng-if="appType==2">
-                    Config Event/Tournament
                 </ion-item>
 
             </ion-list>

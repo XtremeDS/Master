@@ -6,7 +6,7 @@ app.controller('MapCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopup
     $scope.appType = AppService.getAppType();
 
 
-    // UNCOMMENT LATER
+    // Checking if the user is logged in
     /*MasterStubService.loginCheckMaster()
         .success(function (data) {
             // Set userLogged - 0:Not logged 1:Logged
@@ -22,7 +22,6 @@ app.controller('MapCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopup
             $ionicLoading.hide();
         });*/
 
-    // COMMENT LATER
     $scope.isLogged = 1;
 
     // Set eventReady

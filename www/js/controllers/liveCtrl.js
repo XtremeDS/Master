@@ -3,7 +3,25 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
     $scope.appType = AppService.getAppType();
 
     // Set userLogged - 0:Not logged 1:Logged
-    $scope.isLogged = AppService.getIsLogged();
+    //$scope.isLogged = AppService.getIsLogged();
+
+    // Check if user is logged in
+    /*MasterStubService.loginCheckMaster()
+        .success(function (data) {
+            // Set userLogged - 0:Not logged 1:Logged
+            if (data.response != 0) {
+                $scope.isLogged = 1;
+            } else {
+                $scope.isLogged = 0;
+            }
+            console.log("isLogged: " + $scope.isLogged);
+            $ionicLoading.hide();
+        }).error(function (error) {
+            console.log("Unable to check login: " + error);
+            $ionicLoading.hide();
+        });*/
+
+    $scope.isLogged = 1;
 
     // Set squadID - 0:Not in squad 1:In squad
     $scope.squadID = AppService.getSquadID();

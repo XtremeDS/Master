@@ -1,10 +1,11 @@
 app.controller('ConfigMasterCtrl', function ($scope, AppService, CommonStubService, MasterConfig, $ionicLoading, MasterStubService) {
 	
-	// UNCOMMENT LATER
-    /*$scope.showLoadding = $ionicLoading.show({
+	// Show loading until user logs in
+    $scope.showLoadding = $ionicLoading.show({
 		template: '<ion-spinner icon="android"></ion-spinner>'
 	});
 	
+	// Check if the user is logged in
 	MasterStubService.loginCheckMaster()
         .success(function (data) {
             // Set userLogged - 0:Not logged 1:Logged
@@ -18,10 +19,10 @@ app.controller('ConfigMasterCtrl', function ($scope, AppService, CommonStubServi
         }).error(function (error) {
             console.log("Unable to check login: " + error);
             $ionicLoading.hide();
-        });*/
+        });
 
     // COMMENT LATER
-    $scope.isLogged = 1;
+    //$scope.isLogged = 1;
 
 	/* RIGHT NOW I HAVE TO FORCE IT TO BE LOGGED IN */
 		//$scope.isLogged = 1;

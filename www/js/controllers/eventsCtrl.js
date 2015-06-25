@@ -10,8 +10,8 @@ app.controller('EventsCtrl', function ($scope, AppService, MasterStubService, Ev
 
     console.log("inEvent: "+ AppService.getInEvent());
 
-    // UNCOMMENT LATER
-    /*MasterStubService.loginCheckMaster()
+    // Check if the user is logged in
+    MasterStubService.loginCheckMaster()
         .success(function (data) {
             // Set userLogged - 0:Not logged 1:Logged
             if (data.response != 0) {
@@ -24,10 +24,10 @@ app.controller('EventsCtrl', function ($scope, AppService, MasterStubService, Ev
         }).error(function (error) {
             console.log("Unable to check login: " + error);
             $ionicLoading.hide();
-        });*/
+        });
 
     // COMMENT LATER
-    $scope.isLogged = 1;
+    //$scope.isLogged = 1;
 
     $scope.inEvent = AppService.getInEvent();
 

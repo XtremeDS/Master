@@ -10,7 +10,7 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
          template: '<ion-spinner icon="android"></ion-spinner>'
     });
 
-	// UNCOMMENT LATER
+	// Check if the user is logged in
     MasterStubService.loginCheckMaster()
         .success(function (data) {
             // Set userLogged - 0:Not logged 1:Logged
@@ -28,7 +28,7 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
         });
 
     // COMMENT LATER
-    $scope.isLogged = 1;
+    //$scope.isLogged = 1;
 
 	console.log($scope.isLogged);
 	if($scope.isLogged){
