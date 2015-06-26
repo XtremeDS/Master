@@ -365,4 +365,17 @@ app.service('MasterInfo', function($ionicLoading, GeneralFunctions, MasterStubSe
                     'Unable to load data: ' + error.message);
             });
     };
+
+
+    // this part enables retrieval of current password when changing passwords
+    /*var currentMasterPassword;
+    
+    return {
+        getCurrentPassword: function() {
+            return currentMasterPassword;
+        },
+        setCurrentPassword: function(password) {
+            currentMasterPassword = password;
+        }
+    }*/
 });

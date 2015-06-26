@@ -80,6 +80,7 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
         $scope.modalLogin = modalLogin;
     });
 
+
     // Triggered in the login modal to close it
     $scope.closeLoginModal = function () {
         $scope.modalLogin.hide();
@@ -92,6 +93,7 @@ app.controller('MenuCtrl', function ($scope, $ionicModal, $timeout, $ionicPopup,
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
+
         $scope.loadingLogin = $ionicLoading.show({
             content: 'Saving login information',
             showBackdrop: false
