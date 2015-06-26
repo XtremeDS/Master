@@ -3,6 +3,7 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 	$scope.masterInfo = MasterConfig;
 	$scope.isFormValid = false;
 	$scope.countries = Countries;
+	var oldPassword = null;
 	
 	/* FOR NOW I HAVE TO USE DUMMY DATA */
 	
@@ -93,10 +94,34 @@ app.controller('MasterUserConfigCtrl', function ($scope, $state, $ionicHistory, 
 			.success(function (data){
 				console.log(data);
 				$scope.updateMasterConfigResult = data.response;
-				if(data == 0){
+				if(data.response == 0){
 					/* TODO - Change this to Warning */
+					for(var key in data.errors) {
+						var value = data.errors[key];
+						console.log(value);	
+					}
+				}
 					Console.log("Error updating");
 				}
+
+
+				/*TODO-	UPDATE PASSWORD
+				/*MasterStubService.changeMasterPassword($scope.masterInfo.oldPassword,$scope.masterInfo.accessData.password)
+					.success(function (data) {
+					console.log(data.response);
+					if(data.response == 0){
+					for(var key in data.errors) {
+						var value = data.errors[key];
+						console.log(value);	
+					}
+				}
+
+				})
+					.error(function (error) {
+					$scope.changeMasterPasswordResult = 'Unable to load data: ' + error;*/
+	};
+
+
 			})
 			.error(function (error) {
 				/* TODO - Change this to Warning */

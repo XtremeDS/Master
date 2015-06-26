@@ -8,10 +8,7 @@ app.factory('MasterConfig', function(){
 			name:null,
 			phone:null,
 			zipCode:null,
-			country:{
-				country:null,
-				countryName:null
-			},
+			country:false,
 			address:null
 		},
 		association:{
