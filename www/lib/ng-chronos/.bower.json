@@ -1,0 +1,19 @@
+{
+  "name": "ng-chronos",
+  "dependencies": {},
+  "devDependencies": {
+    "angular": "latest",
+    "angular-mocks": "latest"
+  },
+  "homepage": "https://github.com/voylinux/ng-chronos",
+  "_release": "54490dfc14",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "54490dfc14758a48d7a394c425813bd55968dc95"
+  },
+  "_source": "git://github.com/voylinux/ng-chronos.git",
+  "_target": "*",
+  "_originalSource": "ng-chronos",
+  "_direct": true
+}

@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in configEventCtrl.js
 // 'starter.services' is found in services.js
 
-var app = angular.module('starter', ['ionic', 'ngFlag', 'socom-maps', 'hudModule']);
+var app = angular.module('starter', ['ionic', 'ngFlag', 'socom-maps', 'hudModule', 'firebase']);
 
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {

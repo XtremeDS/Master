@@ -10,7 +10,8 @@
     "leaflet-draw": "0.2.4",
     "socom-maps.view-mode": "0.0.4",
     "socom-maps.compass": "0.0.4",
-    "leaflet.markercluster": "0.4.0"
+    "leaflet.markercluster": "0.4.0",
+    "ng-chronos": "*"
   },
   "license": "MIT",
   "ignore": [

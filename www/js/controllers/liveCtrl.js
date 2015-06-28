@@ -1,4 +1,4 @@
-app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopup, $ionicModal, AppService, Squad, Operator, Specialization, Hostile, CoordinatesConverter, Direction) {
+app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopup, $ionicModal, AppService, Squad, Operator, Specialization, Hostile, CoordinatesConverter, Direction, MasterStubService, CommonStubService) {
     // Set appType - 0:Operator 1:ComSys 2:Master
     $scope.appType = AppService.getAppType();
     $scope.mapCreated = function (map) {
@@ -248,6 +248,29 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
     // Set eventReady
     $scope.eventReady = AppService.getEventReady();
 
+    // Selected event from the list
+    $scope.radio = {
+        selectedEvent: {}
+    };
+
+    // Faction A data
+    $scope.factionA = {
+        id: '',
+        pin: '',
+        name: '',
+        score: 0,
+        operators: []
+    };
+
+    // Faction B data
+    $scope.factionB = {
+        id: '',
+        pin: '',
+        name: '',
+        score: 0,
+        operators: []
+    };
+
     // Create the see active perks that we will use later
     $ionicModal.fromTemplateUrl('templates/operator/seeActivePerks.html', {
         scope: $scope
@@ -266,8 +289,25 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
     };
 
     window.resumeEvent = function (container, stop) {
+        var eventID = $scope.radio.selectedEvent.id;
         // Aqui resumir o timer e coisas assim
         $scope.blockUI(container, stop);
+        $('.js-live-label').show();
+        MasterStubService.startEvent(eventID).success(function (data) {
+            // in case of error
+            if (data.response !== 1) {
+                var alertRequest = $ionicPopup.alert({
+                    title: 'An error occurred while stopping the event',
+                    template: 'Please try again.'
+                });
+                alertRequest.then(function (res) {
+                    if (res) {
+
+                    }
+                });
+            }
+        });
+
     };
     $scope.blockUI = function (container, stop) {
         if ($($(container)).find('.blockUI').length > 0) $(container).find('.blockUI').remove();
@@ -277,22 +317,68 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
     };
 
     $scope.stopEventAndSwitchView = function () {
-        // When event is stopped then switch to some other tab
+        var eventID = $scope.radio.selectedEvent.id;
+        $('.js-live-label').hide();
+        $('.js-pause-button').hide();
+        $('.js-stop-button').hide();
+        MasterStubService.stopEvent(eventID).success(function (data) {
+            // in case of error
+            if (data.response !== 1) {
+                var alertRequest = $ionicPopup.alert({
+                    title: 'An error occurred while stopping the event',
+                    template: 'Please try again.'
+                });
+                alertRequest.then(function (res) {
+                    if (res) {
+
+                    }
+                });
+            }
+        });
+        $scope.closeStopEventModal();
+        $scope.showEventList();
     };
 
     $scope.closeStopEventModal = function () {
         $scope.modal.hide();
     };
 
+    $scope.getAllFactionsScore = function (eventId) {
+        CommonStubService.getAllFactionsScore(eventId).success(function (data) {
+                $scope.factionA.score = data.response.a;
+                $scope.factionB.score = data.response.b;
+            }).error(function (error) {
+                console.log(error);
+                $scope.getAllFactionsScoreResult = 'Unable to load data: ' + error;
+            });
+    };
+
     $scope.pauseEvent = function () {
+        var eventID = $scope.radio.selectedEvent.id;
         // Parar aqui o timer e coisas desse estilo
         $scope.blockUI('#view-live');
+        $('.js-live-label').hide();
+        MasterStubService.pauseEvent(eventID).success(function (data) {
+            // in case of error
+            if (data.response !== 1) {
+                var alertRequest = $ionicPopup.alert({
+                    title: 'An error occurred while pausing the event',
+                    template: 'Please try again.'
+                });
+                alertRequest.then(function (res) {
+                    if (res) {
+
+                    }
+                });
+            }
+        });
     };
 
     $scope.stopEvent = function () {
         $ionicModal.fromTemplateUrl('templates/modals/stop_event_modal.html', {
             scope: $scope,
-            animation: 'slide-in-up'
+            animation: 'slide-in-up',
+            backdropClickToClose: false
         }).then(function (modal) {
             $scope.modal = modal;
             $scope.modal.show();
@@ -300,6 +386,100 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
         //Cleanup the modal when we're done with it!
         $scope.$on('$destroy', function () {
             $scope.modal.remove();
+        });
+    };
+
+    $scope.showEventList = function () {
+        MasterStubService.getAllMasterEvents().success(function (data) {
+            if (data.response === 1) {
+                $scope.events = data.list;
+
+                $ionicModal.fromTemplateUrl('templates/modals/show_all_events_modal.html', {
+                    scope: $scope,
+                    animation: 'slide-in-up',
+                    backdropClickToClose: false
+                }).then(function (modal) {
+                    $scope.modal = modal;
+                    $scope.modal.show();
+                });
+                //Cleanup the modal when we're done with it!
+                $scope.$on('$destroy', function () {
+                    $scope.modal.remove();
+                });
+            }
+        });
+    };
+
+    $scope.startSelectedEvent = function () {
+        var eventID = $scope.radio.selectedEvent.id;
+        // prestart the event
+        $('.js-live-label').show();
+        $('.js-pause-button').show();
+        $('.js-stop-button').show();
+        MasterStubService.prestartEvent(eventID).success(function (data) {
+            if (data.response === 1) {
+                // start the event
+                MasterStubService.startEvent(eventID).success(function (data) {
+                    if (data.response === 1) {
+                        // if event is successfully created, get the factions from this event
+                        MasterStubService.getAllFactions(eventID).success(function (data) {
+                            if (data.response === 2) {
+                                $scope.getAllFactionsScore(eventID);
+                                $scope.factionA.id = data.list[0].id;
+                                $scope.factionA.name = data.list[0].name;
+                                $scope.factionA.pin = data.list[0].pin;
+                                $scope.factionA.id = data.list[1].id;
+                                $scope.factionA.name = data.list[1].name;
+                                $scope.factionA.pin = data.list[1].pin;
+                                // if there are two factions to start the game, then request all the data from them
+                                MasterStubService.viewAllFactions(eventID, function(data) {
+                                    var counter = 0;
+                                    angular.forEach(data, function(value, key) {
+                                        console.log(key + ': ', value);
+                                        if (counter == 0) {
+                                            $scope.factionA.operators = value.operators;
+                                        } else {
+                                            $scope.factionB.operators = value.operators;
+                                        }
+                                        counter++;
+                                    });
+
+                                });
+                            } else {
+                                var alertRequest = $ionicPopup.alert({
+                                    title: 'An error occurred starting the event',
+                                    template: 'Please select an event again to start from the list.'
+                                });
+                                alertRequest.then(function (res) {
+                                    if (res) {
+                                        $scope.showEventList();
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        var alertRequest = $ionicPopup.alert({
+                            title: 'An error occurred starting the event',
+                            template: 'Please select an event again to start from the list.'
+                        });
+                        alertRequest.then(function (res) {
+                            if (res) {
+                                $scope.showEventList();
+                            }
+                        });
+                    }
+                });
+            } else {
+                var alertRequest = $ionicPopup.alert({
+                    title: 'An error occurred starting the event',
+                    template: 'Please select an event again to start from the list.'
+                });
+                alertRequest.then(function (res) {
+                    if (res) {
+                        $scope.showEventList();
+                    }
+                });
+            }
         });
     };
 
@@ -427,4 +607,16 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
     $scope.closeKnowTextPopup = function () {
         $scope.knownTextPopup.close();
     };
+
+    MasterStubService.viewAllFactions(10, function(data) {
+        angular.forEach(data, function(value, key) {
+            console.log(key + ': ', value);
+        });
+    });
+
+    $('.js-live-label').hide();
+    $('.js-pause-button').hide();
+    $('.js-stop-button').hide();
+    $scope.showEventList();
+
 });

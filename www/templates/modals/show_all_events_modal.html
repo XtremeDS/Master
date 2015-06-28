@@ -1,0 +1,21 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">List of Events</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="row text-center">
+            <h2>Select an event to start</h2>
+        </div>
+        <!-- event list -->
+        <div class="list">
+            <ion-radio ng-repeat="event in events" ng-model="radio.selectedEvent" ng-value="event">{{ event.name }}</ion-radio>
+        </div>
+    </ion-content>
+    <ion-footer-bar align-title="right">
+        <div class="buttons">
+            <button class="button button-outline button-assertive" ng-click="startSelectedEvent()">
+                Start
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

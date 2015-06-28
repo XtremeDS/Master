@@ -1,0 +1,11 @@
+{
+  "name": "ng-chronos",
+  "version": "0.0.1",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "angular": "latest",
+    "angular-mocks": "latest"
+  }
+}
