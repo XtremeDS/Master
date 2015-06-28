@@ -1,23 +1,219 @@
-app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopup, $ionicModal, AppService, Squad, Operator, Specialization) {
+app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopup, $ionicModal, AppService, Squad, Operator, Specialization, Hostile, CoordinatesConverter, Direction) {
     // Set appType - 0:Operator 1:ComSys 2:Master
     $scope.appType = AppService.getAppType();
     $scope.mapCreated = function (map) {
+        console.log(map);
         $scope.map = map;
         $scope.map.addSquad(new Squad(1));
-        var gamezone = [
-            new L.LatLng(39.749603, -8.81188),
-            new L.LatLng(39.747245, -8.809389),
-            new L.LatLng(39.7350782, -8.8159208),
-            new L.LatLng(39.7250685, -8.7888804),
-            new L.LatLng(39.7042049, -8.7450639),
-            new L.LatLng(39.7049312, -8.7117615),
-            new L.LatLng(39.7470229, -8.6982563),
-            new L.LatLng(39.763266, -8.7687178),
-            new L.LatLng(39.749603, -8.81188)
+        var requestResult = [
+            {
+                lat_c: "N",
+                lat_d: 39,
+                lat_m: 44,
+                lat_s: 58.57,
+                lng_c: "W",
+                lng_d: 8,
+                lng_m: 48,
+                lng_s: 42.76
+            },
+            {
+                lat_c: "N",
+                lat_d: 39,
+                lat_m: 44,
+                lat_s: 50.08,
+                lng_c: "W",
+                lng_d: 8,
+                lng_m: 48,
+                lng_s: 33.8
+            },
+            {
+                lat_c: "N",
+                lat_d: 39,
+                lat_m: 44,
+                lat_s: 6.28,
+                lng_c: "W",
+                lng_d: 8,
+                lng_m: 48,
+                lng_s: 57.31
+            },
+            {
+                lat_c: "N",
+                lat_d: 39,
+                lat_m: 43,
+                lat_s: 30.24,
+                lng_c: "W",
+                lng_d: 8,
+                lng_m: 47,
+                lng_s: 19.96
+            },
+            {
+                lat_c: "N",
+                lat_d: 39,
+                lat_m: 42,
+                lat_s: 15.13,
+                lng_c: "W",
+                lng_d: 8,
+                lng_m: 44,
+                lng_s: 42.23
+            },
+            {
+                lat_c: "N",
+                lat_d: 39,
+                lat_m: 42,
+                lat_s: 17.7,
+                lng_c: "W",
+                lng_d: 8,
+                lng_m: 42,
+                lng_s: 42.34
+            },
+            {
+                lat_c: "N",
+                lat_d: 39,
+                lat_m: 44,
+                lat_s: 49.28,
+                lng_c: "W",
+                lng_d: 8,
+                lng_m: 41,
+                lng_s: 53.72
+            },
+            {
+                lat_c: "N",
+                lat_d: 39,
+                lat_m: 45,
+                lat_s: 47.75,
+                lng_c: "W",
+                lng_d: 8,
+                lng_m: 46,
+                lng_s: 7.38
+            },
+            {
+                lat_c: "N",
+                lat_d: 39,
+                lat_m: 44,
+                lat_s: 58.57,
+                lng_c: "W",
+                lng_d: 8,
+                lng_m: 48,
+                lng_s: 42.47
+            }
         ];
+        var zoneResult = [
+            {
+                lat_c: "N",
+                lat_d: 38,
+                lat_m: 43,
+                lat_s: 57.57,
+                lng_c: "W",
+                lng_d: 7,
+                lng_m: 47,
+                lng_s: 41.76
+            },
+            {
+                lat_c: "N",
+                lat_d: 38,
+                lat_m: 43,
+                lat_s: 49.08,
+                lng_c: "W",
+                lng_d: 7,
+                lng_m: 47,
+                lng_s: 32.8
+            },
+            {
+                lat_c: "N",
+                lat_d: 38,
+                lat_m: 43,
+                lat_s: 5.28,
+                lng_c: "W",
+                lng_d: 7,
+                lng_m: 47,
+                lng_s: 56.31
+            },
+            {
+                lat_c: "N",
+                lat_d: 38,
+                lat_m: 42,
+                lat_s: 29.24,
+                lng_c: "W",
+                lng_d: 7,
+                lng_m: 46,
+                lng_s: 18.96
+            },
+            {
+                lat_c: "N",
+                lat_d: 38,
+                lat_m: 41,
+                lat_s: 14.13,
+                lng_c: "W",
+                lng_d: 7,
+                lng_m: 43,
+                lng_s: 41.23
+            },
+            {
+                lat_c: "N",
+                lat_d: 38,
+                lat_m: 41,
+                lat_s: 16.7,
+                lng_c: "W",
+                lng_d: 7,
+                lng_m: 41,
+                lng_s: 41.34
+            },
+            {
+                lat_c: "N",
+                lat_d: 38,
+                lat_m: 43,
+                lat_s: 48.28,
+                lng_c: "W",
+                lng_d: 7,
+                lng_m: 40,
+                lng_s: 52.72
+            },
+            {
+                lat_c: "N",
+                lat_d: 38,
+                lat_m: 44,
+                lat_s: 46.75,
+                lng_c: "W",
+                lng_d: 7,
+                lng_m: 45,
+                lng_s: 6.38
+            },
+            {
+                lat_c: "N",
+                lat_d: 38,
+                lat_m: 43,
+                lat_s: 57.57,
+                lng_c: "W",
+                lng_d: 7,
+                lng_m: 47,
+                lng_s: 41.47
+            }
+        ];
+        var coordinates = []; //LatLng
+        var converter = new CoordinatesConverter();
+        angular.forEach(requestResult, function (coordinate) {
+            converter.latitude.setDMS(coordinate.lat_d, coordinate.lat_m, coordinate.lat_s, coordinate.lat_c);
+            converter.longitude.setDMS(coordinate.lng_d, coordinate.lng_m, coordinate.lng_s, coordinate.lng_c);
+            coordinates.push(new L.LatLng(converter.getLatitude(), converter.getLongitude()));
+        });
+        var zoneCoordinates = []; //LatLng
+        converter = new CoordinatesConverter();
+        angular.forEach(zoneResult, function (coordinate) {
+            converter.latitude.setDMS(coordinate.lat_d, coordinate.lat_m, coordinate.lat_s, coordinate.lat_c);
+            converter.longitude.setDMS(coordinate.lng_d, coordinate.lng_m, coordinate.lng_s, coordinate.lng_c);
+            zoneCoordinates.push(new L.LatLng(converter.getLatitude(), converter.getLongitude()));
+        });
+        $scope.map.setGameZone(coordinates);
+        $scope.map.addZone(1, 'xpto', zoneCoordinates, "#FFF");
+        $scope.map.addSquad(new Squad(1));
         $scope.map.addOperator(1, new Operator(1, 1, 39.73669629664551, -8.727478981018065, Specialization.TRANSPORTATION));
         $scope.map.addOperator(1, new Operator(1, 12, 39.74669629664551, -8.727478981018065, Specialization.MEDIC));
-        $scope.map.setGameZone(gamezone, 'red');
+        $scope.$on('enemyDetected', function (event, hostile) {
+            console.log(hostile);
+            $scope.map.addHostile(new Hostile(hostile.latitude, hostile.longitude, hostile.enemiesNumber, hostile.direction, hostile.timestamp));
+        });
+        $scope.map.addHostile(new Hostile(39.73669629664551, -8.727478981018065, '+7', Direction.NORTH_EAST, new Date().getTime() + 30000));//will appear
+        $scope.map.addHostile(new Hostile(39.73669629664551, -8.737478981018065, '+7', Direction.NORTH_EAST, new Date().getTime() - 40000));//will appear
     };
     // Set userLogged - 0:Not logged 1:Logged
     //$scope.isLogged = AppService.getIsLogged();

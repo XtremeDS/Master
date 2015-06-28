@@ -34,7 +34,7 @@
             </div>
             <div class="col col-60" style="height: 100%;">
                 <div class="card padding" style="height: 100%;">
-                    <map on-create="map-created(map)"></map>
+                    <map mode="COMSYS" on-create="mapCreated(map)"></map>
                 </div>
             </div>
             <div class="col col-20">
@@ -53,4 +53,11 @@
     <ion-footer-bar class="bar-dark" ng-if="appType==0">
 
     </ion-footer-bar>
+    <style>
+        map {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </ion-view>
