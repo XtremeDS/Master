@@ -259,6 +259,7 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
         pin: '',
         name: '',
         score: 0,
+        squadIds: [],
         operators: []
     };
 
@@ -268,6 +269,7 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
         pin: '',
         name: '',
         score: 0,
+        squadIds: [],
         operators: []
     };
 
@@ -410,6 +412,15 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
         });
     };
 
+    $scope.existsSquad = function (faction, squadID) {
+        for (var i = 0; i < faction.squadIds.length; i++) {
+            if (faction.squadIds[i] === squadID) {
+                return true;
+            }
+        }
+        return false;
+    };
+
     $scope.startSelectedEvent = function () {
         var eventID = $scope.radio.selectedEvent.id;
         // prestart the event
@@ -435,15 +446,23 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
                                 MasterStubService.viewAllFactions(eventID, function(data) {
                                     var counter = 0;
                                     angular.forEach(data, function(value, key) {
-                                        console.log(key + ': ', value);
-                                        if (counter == 0) {
+                                        if (counter === 0) {
                                             $scope.factionA.operators = value.operators;
+                                            for (var i = 0; i < value.operators.length; i++) {
+                                                if (!$scope.existsSquad($scope.factionA, value.operators[i].squad_id)) {
+                                                    $scope.factionA.squadIds.push(value.operators[i].squad_id);
+                                                }
+                                            }
                                         } else {
                                             $scope.factionB.operators = value.operators;
+                                            for (var i = 0; i < value.operators.length; i++) {
+                                                if (!$scope.existsSquad($scope.factionB, value.operators[i].squad_id)) {
+                                                    $scope.factionB.squadIds.push(value.operators[i].squad_id);
+                                                }
+                                            }
                                         }
                                         counter++;
                                     });
-
                                 });
                             } else {
                                 var alertRequest = $ionicPopup.alert({
