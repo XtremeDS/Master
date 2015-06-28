@@ -347,11 +347,9 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
 
     $scope.getAllFactionsScore = function (eventId) {
         CommonStubService.getAllFactionsScore(eventId).success(function (data) {
+            // TODO: set the response values to the real ones
                 $scope.factionA.score = data.response.a;
                 $scope.factionB.score = data.response.b;
-            }).error(function (error) {
-                console.log(error);
-                $scope.getAllFactionsScoreResult = 'Unable to load data: ' + error;
             });
     };
 
