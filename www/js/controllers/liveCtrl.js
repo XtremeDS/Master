@@ -1,25 +1,41 @@
-app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopup, $ionicModal, AppService) {
+app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopup, $ionicModal, AppService, Squad, Operator, Specialization) {
     // Set appType - 0:Operator 1:ComSys 2:Master
     $scope.appType = AppService.getAppType();
-
+    $scope.mapCreated = function (map) {
+        $scope.map =  $scope.initialize();
+        $scope.map.addSquad(new Squad(1));
+        $scope.map.setPlayableArea([
+            new L.LatLng(39.749603, -8.81188),
+            new L.LatLng(39.747245, -8.809389),
+            new L.LatLng(39.7350782, -8.8159208),
+            new L.LatLng(39.7250685, -8.7888804),
+            new L.LatLng(39.7042049, -8.7450639),
+            new L.LatLng(39.7049312, -8.7117615),
+            new L.LatLng(39.7470229, -8.6982563),
+            new L.LatLng(39.763266, -8.7687178),
+            new L.LatLng(39.749603, -8.81188)
+        ]);
+        $scope.map.addOperator(1, new Operator(1, 1, 39.73669629664551, -8.727478981018065, Specialization.TRANSPORTATION));
+        $scope.map.addOperator(1, new Operator(1, 12, 39.74669629664551, -8.727478981018065, Specialization.MEDIC));
+    };
     // Set userLogged - 0:Not logged 1:Logged
     //$scope.isLogged = AppService.getIsLogged();
 
     // Check if user is logged in
     /*MasterStubService.loginCheckMaster()
-        .success(function (data) {
-            // Set userLogged - 0:Not logged 1:Logged
-            if (data.response != 0) {
-                $scope.isLogged = 1;
-            } else {
-                $scope.isLogged = 0;
-            }
-            console.log("isLogged: " + $scope.isLogged);
-            $ionicLoading.hide();
-        }).error(function (error) {
-            console.log("Unable to check login: " + error);
-            $ionicLoading.hide();
-        });*/
+     .success(function (data) {
+     // Set userLogged - 0:Not logged 1:Logged
+     if (data.response != 0) {
+     $scope.isLogged = 1;
+     } else {
+     $scope.isLogged = 0;
+     }
+     console.log("isLogged: " + $scope.isLogged);
+     $ionicLoading.hide();
+     }).error(function (error) {
+     console.log("Unable to check login: " + error);
+     $ionicLoading.hide();
+     });*/
 
     $scope.isLogged = 1;
 
@@ -80,12 +96,12 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
         $ionicModal.fromTemplateUrl('templates/modals/stop_event_modal.html', {
             scope: $scope,
             animation: 'slide-in-up'
-        }).then(function(modal) {
+        }).then(function (modal) {
             $scope.modal = modal;
             $scope.modal.show();
         });
         //Cleanup the modal when we're done with it!
-        $scope.$on('$destroy', function() {
+        $scope.$on('$destroy', function () {
             $scope.modal.remove();
         });
     };
@@ -104,7 +120,7 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
                 $timeout(function () {
                     $scope.loadingRequest.hide();
                 }, 1000);
-                if (action=="UAV") {
+                if (action == "UAV") {
                     $scope.loadingRequest = $ionicLoading.show({
                         content: 'Saving request tactical information',
                         showBackdrop: false
@@ -112,13 +128,13 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
                     $timeout(function () {
                         $scope.loadingRequest.hide();
                     }, 1000);
-                }else{
-                    if (action=="Quad") {
+                } else {
+                    if (action == "Quad") {
 
-                    }else{
-                        if (action=="Mortar") {
+                    } else {
+                        if (action == "Mortar") {
 
-                        }else{
+                        } else {
 
                         }
                     }
@@ -148,7 +164,7 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
     };
 
     $scope.sendKnowText = function (action) {
-        if (action=="Roger") {
+        if (action == "Roger") {
             $scope.loadingSendKnowText = $ionicLoading.show({
                 content: 'Sending know text information',
                 showBackdrop: false
@@ -156,16 +172,16 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
             $timeout(function () {
                 $scope.loadingSendKnowText.hide();
             }, 1000);
-        }else{
-            if (action=="WILCO") {
+        } else {
+            if (action == "WILCO") {
 
-            }else{
-                if (action=="RadioCheck") {
+            } else {
+                if (action == "RadioCheck") {
 
-                }else{
-                    if (action=="Positive") {
+                } else {
+                    if (action == "Positive") {
 
-                    }else{
+                    } else {
 
                     }
                 }
@@ -232,7 +248,8 @@ app.controller('LiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicPopu
             title: 'Uluru (Ayers Rock)'
         });
 
-        $scope.map = map;
+        /*$scope.map = map;*/
+        return map;
     };
     google.maps.event.addDomListener(document.getElementById("map-canvas"), 'load', $scope.initialize());
 
